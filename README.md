@@ -5,6 +5,7 @@
 | `serie.html` | Le stelle Michelin in Italia per area geografica: serie 2014–2027 per Nord, Centro e Mezzogiorno (numero o quota) |
 | `mappa.html` | I ristoranti stellati Michelin nelle province italiane: capoluogo e resto della provincia, filtro per stelle e tabella |
 | `index.html` | Pagina di prova che incorpora i due grafici come farebbe il sito |
+| `stellati_2027.tsv` | I 382 ristoranti stellati della Guida MICHELIN Italia 2027 con stelle, comune, regione e coordinate, letti dal sito ufficiale |
 | `dati.json` | I dati usati (serie per macroarea e indicatori per provincia; i grafici hanno gli stessi dati già al loro interno) |
 
 Le pagine non usano librerie esterne. L'unica risorsa esterna è il font Source Serif 4 di Google Fonts.
@@ -55,6 +56,6 @@ Se il CMS non permette script, l'iframe funziona con l'altezza fissa indicata so
 
 ## 3. Note
 
-- **Fonti:** Guida Michelin (selezione online via michelin-my-maps, estrazione del 3 novembre 2026), elenchi annuali Scatti di Gusto / Dissapore per la serie 2014–2026, sito ufficiale Guida MICHELIN per il 2027 (pagine per regione e livello di stelle, somme uguali al totale ufficiale di 382), ANPR per i residenti.
-- **Limiti:** la mappa è ancora all'edizione 2026 (377 stellati nella selezione online di michelin-my-maps), la serie arriva all'edizione 2027 (382 stellati). Il dato 2016 della serie va verificato su una seconda fonte.
+- **Fonti:** mappa e anno 2027 della serie dal sito ufficiale della Guida MICHELIN Italia 2027 (382 stellati: 13 tre stelle, 40 due stelle, 329 una stella; regioni e prime cinque province coincidono con il lancio askanews del 12 novembre 2026); serie 2014–2026 dagli elenchi annuali Scatti di Gusto / Dissapore; residenti ANPR.
+- **Limiti:** il dato 2016 della serie va verificato su una seconda fonte. I comuni sono assegnati dalle coordinate del sito Michelin (5 ristoranti cadono appena fuori dal confine comunale e sono assegnati al comune più vicino, a meno di 2 km).
 - **Privacy:** il font viene caricato dai server di Google. Se la policy del giornale lo vieta, si possono caricare i file del font nel repository e togliere il link a `fonts.googleapis.com`.

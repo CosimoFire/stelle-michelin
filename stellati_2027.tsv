@@ -1,0 +1,383 @@
+stelle	id	nome	citta	regione	lat	lng
+1	1196521	Anima	Milano	Lombardia	45.4812376	9.1884973
+1	1212536	Serrae Villa Fiesole	Fiesole	Toscana	43.80197	11.2980133
+1	1191172	Senso Lake Garda Alfio Ghezzi	Limone sul Garda	Lombardia	45.824318	10.812279
+1	164430	Oro Restaurant	Venezia	Veneto	45.4271	12.3412
+1	500267	Lunasia	Viareggio	Toscana	43.86546	10.24472
+1	164514	Maxi	Vico Equense	Campania	40.6753698	14.4357253
+1	1181341	Otto Geleng	Taormina	Sicilia	37.852584	15.290778
+1	166500	La Torre	Tavarnelle Val di Pesa	Toscana	43.5529904	11.1878246
+1	68963	La Terrazza	Roma	Lazio	41.9063787	12.4860308
+1	503934	Due Camini	Savelletri	Puglia	40.8760649	17.396077
+1	186017	Relais Blu	Massa Lubrense	Campania	40.58996	14.3303537
+1	257204	Vespasia	Norcia	Umbria	42.7925868	13.0922147
+1	164071	Terrazza Bosquet	Sorrento	Campania	40.6284812	14.3758036
+1	491395	Zash	Archi	Sicilia	37.7079174	15.1998992
+1	132367	Il Falconiere	Cortona	Toscana	43.290269	11.9713942
+1	469523	La Sala dei Grappoli	Montalcino	Toscana	42.9805356	11.3989202
+1	265531	Aroma	Roma	Lazio	41.8903751	12.4948543
+1	367722	Saporium	Chiusdino	Toscana	43.1414359	11.1278724
+1	161231	Le Monzù	Capri	Campania	40.5454969	14.2502024
+1	365994	Indaco	Lacco Ameno	Campania	40.7554715	13.8853358
+1	435462	Tosca	Casole d'Elsa	Toscana	43.3248297	11.0831195
+1	161336	Poggio Rosso	Castelnuovo Berardenga	Toscana	43.3887243	11.4587259
+1	162066	Il Pievano	Gaiole in Chianti	Toscana	43.4654463	11.4293865
+1	161932	Borgo San Jacopo	Firenze	Toscana	43.7680838	11.251472
+1	1210228	Cannavacciuolo by the Lake	Pettenasco	Piemonte	45.8194894	8.4047596
+1	1209455	Luca's by Paulo Airaudo	Firenze	Toscana	43.7707	11.25406
+1	1201798	Il Sereno Al Lago	Torno	Lombardia	45.8588491	9.1174153
+1	1208598	INEO	Roma	Lazio	41.9024382	12.4961797
+1	1201542	Atto di Vito Mollica	Firenze	Toscana	43.7715205	11.2573751
+1	1198594	Elementi	Torgiano	Umbria	43.0557056	12.4661407
+1	1214261	O Me O Il Mare	Gragnano	Campania	40.6916293	14.5157334
+1	1218304	Al Madrigale | Nuova Cucina Rurale	Tivoli	Lazio	41.9647477	12.7991805
+1	1215969	Sciabola	Forte dei Marmi	Toscana	43.9554794	10.1779822
+1	1247806	QUID	Roma	Lazio	41.9022927	12.4807828
+1	325766	Kitchen	Como	Lombardia	45.8334043	9.0715676
+1	1195756	Cannavacciuolo Countryside	Ticciano	Campania	40.6456678	14.4515515
+1	538056	Locanda Mammì	Agnone	Molise	41.8299804	14.3839118
+1	1252156	Akoya	Torino	Piemonte	45.0763324	7.6782801
+1	1244739	Nomos Ante	Roma	Lazio	41.8928601	12.4738185
+1	1215606	Abba	Milano	Lombardia	45.5035598	9.1383399
+1	1212906	Cannavacciuolo Le Cattedrali Asti	Asti	Piemonte	44.9078373	8.1173043
+1	504897	Piano35	Torino	Piemonte	45.06945	7.663038
+1	1213776	Ancòra	Cesenatico	Emilia-Romagna	44.1955658	12.4042192
+1	1193689	Mec Restaurant	Palermo	Sicilia	38.1139131	13.3572594
+1	1214646	Procaccini	Milano	Lombardia	45.4837396	9.1708465
+1	1192183	Linfa	San Gimignano	Toscana	43.4704034	11.0420787
+1	1154535	Sine by Di Pinto	Milano	Lombardia	45.4618683	9.2177246
+1	1213690	Mamesa	Burgusio	Trentino-Alto Adige	46.7108062	10.5281061
+1	1191970	Re Santi e Leoni	Nola	Campania	40.9282413	14.5266743
+1	1183672	Idylio by Apreda	Roma	Lazio	41.8983053	12.475718
+1	556135	Votavota	Marina di Ragusa	Sicilia	36.7826492	14.5571721
+1	1196419	Osmosi	Montepulciano	Toscana	43.1342164	11.8372053
+1	155366	San Martino	Treviglio	Lombardia	45.5241033	9.5937071
+1	1192559	Lorelei	Sorrento	Campania	40.6298333	14.3813239
+1	1191494	Wistèria	Venezia	Veneto	45.43566	12.32682
+1	234904	Dolce Stil Novo alla Reggia	Venaria Reale	Piemonte	45.1351147	7.6249928
+1	157536	Antica Osteria Nonna Rosa	Vico Equense	Campania	40.66156	14.43397
+1	156535	Quadri	Venezia	Veneto	45.4342534	12.3379939
+1	199559	Locanda Margon	Ravina	Trentino-Alto Adige	46.0368139	11.1065928
+1	1157261	Il Tiglio	Montemonaco	Marche	42.9182376	13.316814
+1	1184432	Il Fuoco Sacro	San Pantaleo	Sardegna	41.0529512	9.4460803
+1	562345	San Giorgio	Genova	Liguria	44.4016634	8.945731
+1	159911	Charleston by Giovanni Solofra	Palermo	Sicilia	38.1214796	13.3568941
+1	1183678	Iacobucci	Castel Maggiore	Emilia-Romagna	44.5602196	11.3538901
+1	529760	Qafiz	Santa Cristina d'Aspromonte	Calabria	38.2814827	15.9488692
+1	151762	Il Ristorante di Guido da Costigliole	Santo Stefano Belbo	Piemonte	44.7054966	8.2100874
+1	256034	Al Metrò	San Salvo Marina	Abruzzo	42.0681141	14.7751494
+1	167020	La Capinera	Taormina	Sicilia	37.863136	15.295927
+1	147978	Guido	Rimini	Emilia-Romagna	44.03226	12.62138
+1	163379	Il Flauto di Pan	Ravello	Campania	40.6446307	14.6111085
+1	144354	Le Trabe	Paestum	Campania	40.4469187	15.0429487
+1	528060	Hyle	San Giovanni in Fiore	Calabria	39.2847315	16.6443721
+1	160082	Locanda Don Serafino	Ragusa	Sicilia	36.9245977	14.7407767
+1	148178	La Trota	Rivodutri	Lazio	42.4982957	12.8486278
+1	163029	Tre Olivi	Paestum	Campania	40.42511	14.98659
+1	153435	Il Buco	Sorrento	Campania	40.6272425	14.3750106
+1	520322	Pipero Roma	Roma	Lazio	41.8977856	12.468814
+1	139394	Gambero Rosso	Marina di Gioiosa Ionica	Calabria	38.2990691	16.3276783
+1	152800	Rezzano Cucina e Vino	Sestri Levante	Liguria	44.272093	9.3949381
+1	271421	Tancredi	Sirmione	Lombardia	45.4771961	10.6108961
+1	423027	Moma	Roma	Lazio	41.90569	12.4909
+1	144784	Il Piastrino	Pennabilli	Emilia-Romagna	43.82111	12.2645054
+1	507312	D.one Ristorante Diffuso	Montepagano	Abruzzo	42.6772065	13.9897625
+1	559004	Vitantonio Lombardo	Matera	Basilicata	40.6673722	16.6129579
+1	173881	Ca' Matilde	Rubbianino	Emilia-Romagna	44.652336	10.52569
+1	69260	Joia	Milano	Lombardia	45.4772538	9.2016981
+1	206107	Glass Hostaria	Roma	Lazio	41.890477	12.4691032
+1	151521	Don Alfonso 1890	Sant'Agata sui Due Golfi	Campania	40.6078108	14.3737397
+1	154030	Osteria di Passignano	Passignano	Toscana	43.5768675	11.2458106
+1	139635	Taverna del Capitano	Marina del Cantone	Campania	40.5833911	14.3565359
+1	472707	Don Geppi	Sant' Agnello	Campania	40.631762	14.3931433
+1	255129	Dattilo	Strongoli	Calabria	39.2664765	17.0819276
+1	153139	La Speranzina Restaurant & Relais	Sirmione	Lombardia	45.4931589	10.6085873
+1	69160	Sadler	Milano	Lombardia	45.4726277	9.1926191
+1	320484	Achilli al Parlamento	Roma	Lazio	41.9024619	12.4769426
+1	154279	Ca' Vittoria	Tigliole	Piemonte	44.8866139	8.075849
+1	305044	Tilia	Dobbiaco	Trentino-Alto Adige	46.7233679	12.2243528
+1	551320	Osteria Arbustico	Paestum	Campania	40.4213346	15.0114737
+1	462528	Saporium Firenze	Firenze	Toscana	43.7646	11.2659859
+1	553542	Sapio	Catania	Sicilia	37.505208	15.0949852
+1	146069	President	Pompei	Campania	40.74731	14.49951
+1	136659	Villa Maiella	Guardiagrele	Abruzzo	42.188822	14.2047054
+1	496166	Pashà	Polignano a Mare	Puglia	40.9452777	17.1797101
+1	171577	L'Erba del Re	Modena	Emilia-Romagna	44.64916	10.92368
+1	264805	Contrada	Castelnuovo Berardenga	Toscana	43.3510435	11.56022
+1	136937	Umberto a Mare	Forio	Campania	40.7370555	13.8550343
+1	162005	La Magnolia	Forte dei Marmi	Toscana	43.9497169	10.1774953
+1	68949	Il Convivio Troiani	Roma	Lazio	41.9015408	12.4727932
+1	318744	Marco Bottega Ristorante	Genazzano	Lazio	41.8042821	12.977024
+1	319557	La Preséf	Mantello	Lombardia	46.1505628	9.4898006
+1	350982	Inkiostro	Parma	Emilia-Romagna	44.8287075	10.3368267
+1	123877	La Parolina	Trevinano	Lazio	42.8218494	11.8692538
+1	493840	Il Tino	Fiumicino	Lazio	41.747204	12.257445
+1	360842	I Pupi	Bagheria	Sicilia	38.0803301	13.5116679
+1	439653	Sarri	Imperia	Liguria	43.87008	8.0059
+1	138521	Andreina	Loreto	Marche	43.4404141	13.6217174
+1	131620	Zunica 1880 a Villa Corallo	Sant'Omero	Abruzzo	42.797304	13.779888
+1	155343	LoRo	Trescore Balneario	Lombardia	45.6938611	9.8324198
+1	1206991	Il Bavaglino	Terrasini	Sicilia	38.1554559	13.0810216
+1	256344	Veritas	Napoli	Campania	40.8372277	14.2311901
+1	141150	Il Luogo Aimo e Nadia	Milano	Lombardia	45.458435	9.130776
+1	526880	Bros'	Martina Franca	Puglia	40.6768499	17.3296859
+1	332376	Coria	Catania	Sicilia	37.5053157	15.0860216
+1	197794	Acquerello	Fagnano Olona	Lombardia	45.6691814	8.8709213
+1	124596	La Caravella dal 1959	Amalfi	Campania	40.6338537	14.6016228
+1	1210815	N'uovo Vino e Cucina	Sutri	Lazio	42.2307606	12.258055
+1	1209846	Bluh Furore	Furore	Campania	40.6152174	14.5423636
+1	127504	La Palta	Borgonovo Val Tidone	Emilia-Romagna	44.9914946	9.4703811
+1	1211446	Iris Ristorante	Verona	Veneto	45.4397874	11.0005401
+1	1207982	Nin	Brenzone sul Garda	Veneto	45.7154863	10.7716421
+1	1201898	Pulejo	Roma	Lazio	41.9071673	12.4593589
+1	1211513	Amanõ	Cagliari	Sardegna	39.2130873	9.1191723
+1	1211557	Visione Restaurant and Living	Barbaresco	Piemonte	44.705997	8.0760925
+1	1202474	Volta del Fuenti by Michele De Blasio	Vietri sul Mare	Campania	40.6622055	14.7138129
+1	1203075	Cannavacciuolo Vineyard	Casanova di Terricciola	Toscana	43.5443686	10.6851821
+1	1201186	Andrea Larossa	Torino	Piemonte	45.03681	7.68156
+1	1199953	Līmū	Bagheria	Sicilia	38.0827311	13.5077378
+1	1202465	Baldo Vino	Pistoia	Toscana	43.934041	10.914356
+1	1199115	Sintesi	Ariccia	Lazio	41.725881	12.6797918
+1	1200012	Locanda de Banchieri	Fosdinovo	Toscana	44.114434	10.0015367
+1	1199116	Alto	Fiorano Modenese	Emilia-Romagna	44.5379081	10.8243773
+1	1198720	Strattoria	Montrigiasco	Piemonte	45.7715102	8.5130006
+1	1197135	Cortile Spirito Santo	Siracusa	Sicilia	37.0564227	15.2944533
+1	1192784	Alici	Amalfi	Campania	40.6188758	14.5766031
+1	167141	Principe Cerami	Taormina	Sicilia	37.8502374	15.2833763
+1	1179776	Glicine	Amalfi	Campania	40.6294267	14.5928504
+1	275339	Venissa	Mazzorbo	Veneto	45.4886784	12.4111088
+1	143848	Anna Stuben	Ortisei	Trentino-Alto Adige	46.5724104	11.6730691
+1	334119	Un Piano nel Cielo	Praiano	Campania	40.6136373	14.5218291
+1	163546	Imàgo	Roma	Lazio	41.9059417	12.4836585
+1	164741	Signum	Malfa	Sicilia	38.57992	14.83344
+1	393977	La Locanda del Borgo	Telese Terme	Campania	41.2249757	14.5325649
+1	197918	Li Galli	Positano	Campania	40.6283391	14.4841948
+1	163300	Zass	Positano	Campania	40.623268	14.5038074
+1	162615	Prezioso	Merano	Trentino-Alto Adige	46.642027	11.1909286
+1	163265	Il Pellicano	Porto Ercole	Toscana	42.380472	11.1924477
+1	147227	Rossellinis	Ravello	Campania	40.650822	14.6130382
+1	162469	Stube Hermitage	Madonna di Campiglio	Trentino-Alto Adige	46.2131692	10.8244764
+1	355975	Dolomieu	Madonna di Campiglio	Trentino-Alto Adige	46.223693	10.8257548
+1	236635	I Portici	Bologna	Emilia-Romagna	44.5019817	11.3448122
+1	380546	Oseleta	Cavaion Veronese	Veneto	45.5252757	10.7912839
+1	328919	Lux Lucis	Forte dei Marmi	Toscana	43.9516497	10.1758581
+1	161611	Le Petit Bellevue	Cogne	Valle d'Aosta	45.6067309	7.3556842
+1	234519	Il Palagio	Firenze	Toscana	43.7774093	11.2665237
+1	1204324	Porcino	Badia	Trentino-Alto Adige	46.6075518	11.8938127
+1	124441	La Stüa de Michil - Simone Cantafio	Corvara in Badia	Trentino-Alto Adige	46.5471597	11.8762348
+1	1192213	Casa Sgarra	Trani	Puglia	41.270434	16.4341752
+1	1154505	Cetaria	Baronissi	Campania	40.7469801	14.7701282
+1	150122	Osteria del Viandante	Rubiera	Emilia-Romagna	44.65333	10.781861
+1	1192021	Paca	Carmignano	Toscana	43.7908779	11.0178345
+1	1241888	Casa Romano	Alzano Lombardo	Lombardia	45.740087	9.724248
+1	1154802	Mater1apr1ma	Pontinia	Lazio	41.4102602	13.0433461
+1	1251637	Ulìa	Arzachena	Sardegna	41.0737416	9.4531487
+1	1213182	Abbruzzino Oltre	Lamezia Terme	Calabria	38.9770969	16.3202202
+1	1195965	Quintessenza	Trani	Puglia	41.2814264	16.4150326
+1	1190770	Retroscena	Porto San Giorgio	Marche	43.1799835	13.7928865
+1	1186044	Moebius Sperimentale	Milano	Lombardia	45.4814199	9.2028665
+1	496366	Local	Venezia	Veneto	45.4356	12.345893
+1	156002	Oasis - Sapori Antichi	Vallesaccarda	Campania	41.0633639	15.251974
+1	1183910	Casa Rapisarda	Numana	Marche	43.5107537	13.6226662
+1	1251770	1224 Restaurant Cortina	Cortina d'Ampezzo	Veneto	46.5354575	12.1410582
+1	1077202	Zia	Roma	Lazio	41.8870305	12.4679141
+1	1190481	Osteria Acquarol	San Michele	Trentino-Alto Adige	46.4556659	11.2589442
+1	1085221	Villa Naj	Torrazza Coste	Lombardia	44.9821335	9.0910635
+1	1157210	FRE	Monforte d'Alba	Piemonte	44.5651402	7.9551082
+1	157362	Romano	Viareggio	Toscana	43.8722767	10.2482771
+1	1190091	IYO Kaiseki	Milano	Lombardia	45.4822057	9.1932579
+1	1184082	Apostelstube	Bressanone	Trentino-Alto Adige	46.7194264	11.6532447
+1	157003	Nazionale	Vernante	Piemonte	44.2439086	7.5334613
+1	1194516	Assonica	Sorisole	Lombardia	45.7431411	9.6526781
+1	529224	Luisl Stube	Lagundo	Trentino-Alto Adige	46.6780899	11.1191355
+1	157087	Il Desco	Verona	Veneto	45.4416145	10.9999722
+1	1102814	SanBrite	Cortina d'Ampezzo	Veneto	46.5434618	12.1565176
+1	500275	Fradis Minoris	Pula	Sardegna	38.9867335	9.0067135
+1	556096	Maeba Restaurant	Ariano Irpino	Campania	41.1218387	15.0657388
+1	157754	Lanterna Verde	Villa di Chiavenna	Lombardia	46.3284	9.49741
+1	1214208	Il Ristorante Alain Ducasse Napoli	Napoli	Campania	40.8403257	14.2555922
+1	1154911	In Viaggio - Claudio Melis	Merano	Trentino-Alto Adige	46.6729096	11.1765125
+1	1191319	Casa Buono	Ventimiglia	Liguria	43.8462058	7.5886453
+1	1192627	Vineria Modì	Taormina	Sicilia	37.8525201	15.28835
+1	1194517	La Limonaia	Torino	Piemonte	45.0674448	7.6233151
+1	1195788	Cavallino	Maranello	Emilia-Romagna	44.5300002	10.8650464
+1	1186560	Borgo Sant'Anna	Monforte d'Alba	Piemonte	44.577783	7.9950812
+1	1192022	Acqua Pazza	Ponza	Lazio	40.8950712	12.9672021
+1	1184362	Casanova	Polignano a Mare	Puglia	40.9958772	17.2208911
+1	1102813	Casa Leali	Puegnago sul Garda	Lombardia	45.5738761	10.5079936
+1	135448	Dalla Gioconda	Gabicce Monte	Marche	43.963886	12.7725315
+1	361561	Guidoristorante	Serralunga d'Alba	Piemonte	44.6389249	7.9865995
+1	295057	Alpenroyal Gourmet	Selva di Val Gardena	Trentino-Alto Adige	46.5588796	11.7463421
+1	150129	Osteria Altran	Ruda	Friuli-Venezia Giulia	45.8132892	13.410651
+1	376776	Spinechile	Schio	Veneto	45.746704	11.337221
+1	139132	Capriccio	Manerba del Garda	Lombardia	45.55285	10.56121
+1	266464	Antica Corte Pallavicina	Polesine Parmense	Emilia-Romagna	45.0215397	10.0856758
+1	139040	Vecchia Malcesine	Malcesine	Veneto	45.7624261	10.8079125
+1	154570	Del Cambio	Torino	Piemonte	45.0695181	7.6848806
+1	162883	Gourmetstube Einhorn	Mules	Trentino-Alto Adige	46.8511074	11.5204481
+1	155232	La Ciau del Tornavento	Treiso	Piemonte	44.6892253	8.0867172
+1	154574	Vintage 1997	Torino	Piemonte	45.068485	7.676379
+1	298424	La Favellina	Malo	Veneto	45.6232264	11.3971417
+1	254942	IYO	Milano	Lombardia	45.4866231	9.1595273
+1	143624	Gellivs	Oderzo	Veneto	45.7828798	12.4946107
+1	431176	Massimo Camia	Novello	Piemonte	44.5803385	7.9103944
+1	325072	Johannesstube	Nova Levante	Trentino-Alto Adige	46.4296498	11.5334034
+1	157751	Osteria della Brughiera	Villa d'Almè	Lombardia	45.7393224	9.626508
+1	153119	La Rucola 2.0	Sirmione	Lombardia	45.4928374	10.6081306
+1	533893	Condividere	Torino	Piemonte	45.0802655	7.6911056
+1	433503	Abocar Due Cucine	Rimini	Emilia-Romagna	44.0626895	12.5663487
+1	151300	La Primula	San Quirino	Friuli-Venezia Giulia	46.0348797	12.6814506
+1	151908	Laite	Sappada	Friuli-Venezia Giulia	46.5685736	12.6948157
+1	393940	Crocifisso	Noto	Sicilia	36.8944278	15.0713855
+1	152371	Silene	Seggiano	Toscana	42.9193337	11.5873607
+1	163920	Suinsom	Selva di Val Gardena	Trentino-Alto Adige	46.5565821	11.7597819
+1	146788	Leon d'Oro	Pralboino	Lombardia	45.2676884	10.2144844
+1	523282	Cucina Cereda	Ponte San Pietro	Lombardia	45.698355	9.5909095
+1	146932	Il Centro	Priocca	Piemonte	44.7905049	8.0624786
+1	337639	Il Marin	Genova	Liguria	44.4083791	8.9273322
+1	363484	Andrea Monesi - Locanda di Orta	Orta San Giulio	Piemonte	45.7987785	8.4058245
+1	526276	Angelo Sabatelli	Putignano	Puglia	40.8500527	17.1227135
+1	146994	Locanda San Lorenzo	Puos d'Alpago	Veneto	46.1395908	12.363875
+1	153384	Al Sorriso	Soriso	Piemonte	45.7406906	8.4116747
+1	496136	Per Me Giulio Terrinoni	Roma	Lazio	41.8973035	12.46747
+1	151150	La Credenza	San Maurizio Canavese	Piemonte	45.217537	7.6319706
+1	487299	All'Oro	Roma	Lazio	41.9140073	12.4730035
+1	152043	Casa Mazzucchelli	Sasso Marconi	Emilia-Romagna	44.4125719	11.2578948
+1	558763	Gucci Osteria da Massimo Bottura	Firenze	Toscana	43.7698043	11.2567125
+1	152142	Trattoria da Amerigo	Savigno	Emilia-Romagna	44.3903557	11.0739644
+1	132144	Trattoria al Cacciatore - La Subida	Cormons	Friuli-Venezia Giulia	45.9644549	13.4962756
+1	532678	Quellenhof Gourmetstube 1897	San Martino in Passiria	Trentino-Alto Adige	46.7459911	11.2044911
+1	479517	Contraste	Milano	Lombardia	45.446095	9.17929
+1	366016	Shalai	Linguaglossa	Sicilia	37.8433039	15.1419716
+1	507732	Marco Martini Restaurant	Roma	Lazio	41.880543	12.484601
+1	206673	Trattoria Zappatori	Pinerolo	Piemonte	44.8847909	7.3320196
+1	475673	Nostrano	Pesaro	Marche	43.9136749	12.9193802
+1	141648	Malga Panna	Moena	Trentino-Alto Adige	46.376804	11.643984
+1	365827	Antonello Colonna Labico	Labico	Lazio	41.78292	12.873689
+1	138694	Butterfly	Marlia	Toscana	43.894723	10.5364035
+1	131617	La Bandiera	Civitella Casanova	Abruzzo	42.3695438	13.9083088
+1	133536	Schöneck	Molini	Trentino-Alto Adige	46.8186079	11.8482868
+1	146030	Il Patio	Biella	Piemonte	45.5652115	8.0526276
+1	145511	Dolada	Plois	Veneto	46.1736379	12.3601001
+1	500269	Primo Restaurant	Lecce	Puglia	40.3526	18.177374
+1	254876	Il Gallo Cedrone	Madonna di Campiglio	Trentino-Alto Adige	46.2351343	10.8242148
+1	150043	Due Colombe	Borgonato	Lombardia	45.62138	10.018
+1	161790	Atelier	Domodossola	Piemonte	46.1149939	8.2957587
+1	129608	Kuppelrain	Castelbello	Trentino-Alto Adige	46.6264329	10.8975683
+1	155839	Vescovado	Noli	Liguria	44.2075887	8.4163876
+1	429627	Berton	Milano	Lombardia	45.4821805	9.1944159
+1	554414	Cracco in Galleria	Milano	Lombardia	45.46535	9.189977
+1	138834	Il Cantinone e Sport Hotel Alpina	Madesimo	Lombardia	46.44052	9.35916
+1	152354	San Martino	Scorzè	Veneto	45.5892243	12.110501
+1	548490	Impronta d'Acqua	Cavi di Lavagna	Liguria	44.2953631	9.3696755
+1	139707	Bracali	Ghirlanda	Toscana	43.0584193	10.8995225
+1	266925	Lazzaro 1915	Pontelongo	Veneto	45.2499891	12.0203099
+1	415230	L'Argine a Vencò	Dolegna del Collio	Friuli-Venezia Giulia	46.0025426	13.4631925
+1	519598	Materia	Cernobbio	Lombardia	45.8383599	9.0685195
+1	128395	Al Gambero	Calvisano	Lombardia	45.3492146	10.3430573
+1	462650	La Tana Gourmet	Asiago	Veneto	45.85289	11.49528
+1	264952	Storie d'Amore	Borgoricco	Veneto	45.5381705	11.9290391
+1	460913	Wood	Breuil Cervinia	Valle d'Aosta	45.9334388	7.6294846
+1	136759	San Domenico	Imola	Emilia-Romagna	44.3556597	11.7126953
+1	135165	Bistrot	Forte dei Marmi	Toscana	43.9553929	10.1700005
+1	133137	Il Papavero	Eboli	Campania	40.6190612	15.0539834
+1	160848	Caracol	Bacoli	Campania	40.7827339	14.0834126
+1	511146	Italo Bassi Confusion Restaurant	Porto Cervo	Sardegna	41.1345678	9.5375439
+1	1208040	Olio	Origgio	Lombardia	45.6004849	9.0282762
+1	1202455	Grow Restaurant	Albiate	Lombardia	45.6599756	9.2561101
+1	1206134	Dissapore di Andrea Catalano	Carovigno	Puglia	40.7073742	17.6581893
+1	135706	La Tortuga	Gargnano	Lombardia	45.6887411	10.6652261
+1	130438	Il Saraceno	Cavernago	Lombardia	45.6304009	9.7650842
+1	349133	L'Asinello	Castelnuovo Berardenga	Toscana	43.3851189	11.4808192
+1	139980	Sissi	Merano	Trentino-Alto Adige	46.6738587	11.1608085
+1	132024	Miramonti l'Altro	Concesio	Lombardia	45.6135819	10.2043986
+1	130947	La Buca	Cesenatico	Emilia-Romagna	44.200314	12.396823
+1	132267	Tivoli	Cortina d'Ampezzo	Veneto	46.5338851	12.1222949
+1	367264	Il Refettorio	Conca dei Marini	Campania	40.6207949	14.5770614
+1	128675	All'Enoteca	Canale	Piemonte	44.7969064	7.9929925
+1	130400	El Molin	Cavalese	Trentino-Alto Adige	46.292019	11.4594756
+1	256165	Damini Macelleria & Affini	Arzignano	Veneto	45.5174094	11.334968
+1	124546	Casin del Gamba	Altissimo	Veneto	45.6178	11.2615
+1	125034	Zur Rose	San Michele	Trentino-Alto Adige	46.455093	11.258857
+1	391105	Ristorante del Lago	Bagno di Romagna	Emilia-Romagna	43.86577	12.027197
+1	1211632	Olmo	Cornaredo	Lombardia	45.48761	9.0124
+1	124136	Locanda del Pilone	Alba	Piemonte	44.6636848	8.0470513
+1	124965	Vecchio Ristoro	Aosta	Valle d'Aosta	45.7386406	7.3155868
+1	1199912	Une	Capodacqua	Umbria	43.0177785	12.7839323
+1	536205	Sensi	Amalfi	Campania	40.6339198	14.6030985
+1	548309	Da Gorini	San Piero in Bagno	Emilia-Romagna	43.8587914	11.9745195
+1	1207728	Ada	Perugia	Umbria	43.1085426	12.390168
+1	1206382	Téa del Kosmo	Livigno	Lombardia	46.5372803	10.1416258
+1	124197	Il Cantuccio	Albavilla	Lombardia	45.8042803	9.1891665
+1	440535	Aqua Crua	Barbarano Vicentino	Veneto	45.42242	11.55369
+1	1206064	Equilibrio	Dolcedo	Liguria	43.8997111	7.9572418
+1	384244	Locanda Baggio	Asolo	Veneto	45.8111209	11.9088151
+1	323889	Nove	Alassio	Liguria	44.0117944	8.172401
+1	1211168	Capogiro	Baia Sardinia	Sardegna	41.1283048	9.4720013
+1	1199710	Trattoria contemporanea	Lomazzo	Lombardia	45.6967845	9.034291
+1	1202972	Casa Bertini	Recanati	Marche	43.4061444	13.5381739
+1	1202926	Contrada Bricconi	Oltressenda Alta	Lombardia	45.922027	9.9503694
+1	1203766	Paolo Griffa al Caffè Nazionale	Aosta	Valle d'Aosta	45.7376217	7.3208336
+1	1207984	sui generis.	Saronno	Lombardia	45.6249766	9.0412055
+1	1198518	La Spigola	Golfo Aranci	Sardegna	41.0027825	9.6189003
+1	1197785	ARIA	Napoli	Campania	40.8433646	14.2540383
+1	1208317	Autem*	Milano	Lombardia	45.4534577	9.2040052
+1	1199126	Da Lucio	Rimini	Emilia-Romagna	44.0782476	12.570068
+1	1201998	Acqua	Olgiate Olona	Lombardia	45.6346559	8.8878287
+1	1197633	Grual	Pinzolo	Trentino-Alto Adige	46.1669869	10.7666316
+1	1202978	Il Visibilio	Castelnuovo Berardenga	Toscana	43.391583	11.389824
+1	1204821	Horto	Milano	Lombardia	45.4661897	9.1875693
+1	1196801	Marotta	Squille	Campania	41.146241	14.4096379
+2	1090754	George Restaurant	Napoli	Campania	40.8372677	14.2300686
+2	526938	Glam Enrico Bartolini	Venezia	Veneto	45.4413057	12.3298209
+2	533025	ACQUOLINA | Nuova Cucina Mediterranea	Roma	Lazio	41.9086474	12.4753719
+2	128950	L'Olivo	Anacapri	Campania	40.5559154	14.2220085
+2	155717	Agli Amici	Godia	Friuli-Venezia Giulia	46.1021988	13.2661162
+2	164329	Harry's Piccolo	Trieste	Friuli-Venezia Giulia	45.6511471	13.7700495
+2	402346	Enoteca La Torre	Roma	Lazio	41.916491	12.4693268
+2	163087	Locanda Sant'Uffizio Enrico Bartolini	Cioccaro	Piemonte	45.0271679	8.2778294
+2	152555	Madonnina del Pescatore	Marzocca	Marche	43.681562	13.2803037
+2	142369	Caino	Montemerano	Toscana	42.6220221	11.4906283
+2	152534	Uliassi	Senigallia	Marche	43.7194599	13.2206587
+2	118297	Il Pagliaccio	Roma	Lazio	41.89793	12.4673729
+2	159609	La Madia	Licata	Sicilia	37.1070131	13.9338055
+2	131768	Arnolfo	Colle di Val d'Elsa	Toscana	43.422108	11.1163697
+2	177932	Pascucci al Porticciolo	Fiumicino	Lazio	41.770165	12.2271443
+2	128109	Taverna Estia	Brusciano	Campania	40.9083323	14.4232938
+2	503771	daní maison	Ischia	Campania	40.7302578	13.9487527
+2	495745	Villa Elena	Bergamo	Lombardia	45.7105439	9.648062
+2	1206135	Verso Capitaneo	Milano	Lombardia	45.4648103	9.189585
+2	1203068	Andrea Aprea	Milano	Lombardia	45.4734602	9.2042705
+2	1208126	Orma Roma	Roma	Lazio	41.9084005	12.4933748
+2	164495	Il Piccolo Principe	Viareggio	Toscana	43.8809756	10.2355866
+2	439039	St. George by Heinz Beck	Taormina	Sicilia	37.8554565	15.2900353
+2	151934	Terra The Magic Place	Sarentino	Trentino-Alto Adige	46.6516821	11.3224439
+2	476818	Seta by Antonio Guida	Milano	Lombardia	45.4694121	9.1910082
+2	365786	Campo del Drago	Montalcino	Toscana	43.0836833	11.4221183
+2	1211479	Al Gatto Verde	Modena	Emilia-Romagna	44.6102868	10.980026
+2	1199328	I Tenerumi	Isola Vulcano	Sicilia	38.4305495	14.9560516
+2	157550	Torre del Saracino	Sorrento	Campania	40.6274849	14.3699538
+2	1190317	Famiglia Rana	Oppeano	Veneto	45.3143007	11.1219854
+2	363223	Krèsios	Telese Terme	Campania	41.2045624	14.5000207
+2	160079	Duomo	Ragusa	Sicilia	36.9267762	14.7408182
+2	164202	Castel fine dining	Tirolo	Trentino-Alto Adige	46.6864136	11.1564254
+2	162102	Villa Feltrinelli	Gargnano	Lombardia	45.693253	10.669477
+2	440407	Piazzetta Milù	Castellammare di Stabia	Campania	40.7018717	14.4829218
+2	130682	Antica Corona Reale	Cervere	Piemonte	44.6350491	7.7886436
+2	130945	Magnolia	Longiano	Emilia-Romagna	44.0731058	12.3498464
+2	138506	La Peca	Lonigo	Veneto	45.3848934	11.3990641
+2	504378	D'O	Cornaredo	Lombardia	45.4870244	9.0117994
+2	128500	Antica Osteria Cera	Lughetto	Veneto	45.3881476	12.1302222
+3	458343	Casa Perbellini 12 Apostoli	Verona	Veneto	45.4426941	10.9961161
+3	150111	Le Calandre	Rubano	Veneto	45.4215425	11.8096633
+3	256966	La Rei Natura by Michelangelo Mammoliti	Serralunga d'Alba	Piemonte	44.59437	7.9997666
+3	478337	Enrico Bartolini al Mudec	Milano	Lombardia	45.4516	9.161865
+3	128107	Da Vittorio	Brusaporto	Lombardia	45.6774131	9.7715225
+3	1209246	Atelier Moessmer Norbert Niederkofler	Brunico	Trentino-Alto Adige	46.792729	11.949213
+3	143798	Villa Crespi	Orta San Giulio	Piemonte	45.7964778	8.4159486
+3	69016	La Pergola	Roma	Lazio	41.9187946	12.4461151
+3	141517	Osteria Francescana	Modena	Emilia-Romagna	44.6448099	10.9215518
+3	134313	Enoteca Pinchiorri	Firenze	Toscana	43.770066	11.2621974
+3	128768	Dal Pescatore Santini	Runate	Lombardia	45.1712728	10.3565788
+3	336542	Reale	Castel di Sangro	Abruzzo	41.7800349	14.094554
+3	124135	Piazza Duomo	Alba	Piemonte	44.7006536	8.0363522
