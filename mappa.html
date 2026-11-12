@@ -35,10 +35,15 @@ svg{display:block}
 .cap0{fill:#fff;stroke:var(--city);stroke-width:1.2;pointer-events:none}
 .legend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 20px;margin:8px 0 0;font-size:14px;color:var(--ink2)}
 .legend h3{font-size:14px;margin:0 0 6px;font-weight:600;color:var(--ink2)}
-.ramp{display:flex;gap:2px;margin-bottom:3px}
-.ramp span{flex:1;height:12px}
-.ramp-l{display:flex;font-size:12px;color:var(--muted)}
-.ramp-l span{flex:1}
+.cl{display:flex;gap:8px;align-items:flex-start}
+.cl .z{width:22px;flex:none;text-align:center;font-size:12px;color:var(--muted)}
+.cl .z i{display:block;height:12px;background:#e6e6e6;margin-bottom:3px}
+.cl .g{flex:1;min-width:0}
+.cl .bar{height:12px;margin-bottom:3px}
+.cl .t{position:relative;height:16px;font-size:12px;color:var(--muted)}
+.cl .t span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.cl .t span.s{transform:none}
+.cl .t span:last-child{transform:translateX(-100%)}
 #sizeleg{width:100%;max-width:260px;height:auto}
 #sizeleg text{font-family:"Source Serif 4",Georgia,serif;fill:var(--muted)}
 .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin:6px 0 4px;color:var(--ink2)}
@@ -78,7 +83,7 @@ table.data td.n,table.data th.n{text-align:right}
     <span class="cnt" id="cnt"></span>
   </div>
   <div class="legend">
-    <div><h3 id="legT"></h3><div class="ramp" id="ramp"></div><div class="ramp-l" id="rampl"></div></div>
+    <div><h3 id="legT"></h3><div class="cl"><div class="z"><i></i>0</div><div class="g"><div class="bar" id="ramp"></div><div class="t" id="rampl"></div></div></div></div>
     <div><h3 id="legC"></h3><svg id="sizeleg" viewBox="0 0 260 46"></svg></div>
   </div>
   <div class="chart"><svg id="map" role="img" aria-label="Mappa delle province italiane"></svg></div>
@@ -100,17 +105,21 @@ function placeTip(e){
   const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8), y=Math.min(e.clientY+14,innerHeight-tip.offsetHeight-8);
   tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px";
 }
-const RATE_BINS = [{max:0,c:"#e6e6e6",l:"0"},{max:.5,c:"#bfe3f5",l:"fino a 0,5"},{max:1,c:"#6cc1ec",l:"0,5–1"},{max:2,c:"#169cdc",l:"1–2"},{max:1e9,c:"#0b5f8c",l:"oltre 2"}];
-const COUNT_BINS = [{max:0,c:"#e6e6e6",l:"0"},{max:1,c:"#169cdc",l:"1"},{max:1e9,c:"#0b5f8c",l:"2 o più"}];
+// scala continua: 0 in grigio, poi dall'azzurro chiaro al blu scuro (valori oltre il massimo della scala al colore più scuro)
+const STOPS = ["#a8d8f1","#169cdc","#073f5e"];
+const SCALE = {rate:{max:3,ticks:[1,2,3],last:"3 e oltre"}, n2:{max:5,ticks:[1,2,3,4,5]}, n3:{max:2,ticks:[1,2]}};
 const FILTERS = {all:{lab:"Tutti gli stellati",lv:[0,1,2]},s1:{lab:"1 stella",lv:[0]},s2:{lab:"2 stelle",lv:[1]},s3:{lab:"3 stelle",lv:[2]}};
 let FK="all";
 const rad = n=> n>0 ? 2.5+Math.sqrt(n)*2.7 : 2.4;
 const title = s=> s.toLowerCase().replace(/(^|[\s\-'\/])\S/g,m=>m.toUpperCase());
 const sum = (arr,lv)=> lv.reduce((a,i)=>a+arr[i],0);
 const useRate = ()=> FK==="all"||FK==="s1";
-const bins = ()=> useRate()?RATE_BINS:COUNT_BINS;
+const sc = ()=> useRate()?SCALE.rate:(FK==="s2"?SCALE.n2:SCALE.n3);
+const hx = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lerp = t=>{t=Math.max(0,Math.min(1,t))*(STOPS.length-1); const i=Math.min(STOPS.length-2,Math.floor(t)), f=t-i, a=hx(STOPS[i]), b=hx(STOPS[i+1]); return "rgb("+a.map((v,k)=>Math.round(v+(b[k]-v)*f)).join(",")+")";};
+const lo = ()=> useRate()?0:1;
 const resVal = f=>{const n=sum(f.lvl.res,FILTERS[FK].lv); return useRate()? n/f.residenti_resto*1e5 : n;};
-const color = v=> bins().find(b=>v<=b.max).c;
+const color = v=>{ if(!(v>0)) return "#e6e6e6"; const S=sc(), a=lo(); return lerp(S.max===a?1:(v-a)/(S.max-a)); };
 const NS="http://www.w3.org/2000/svg";
 const svg=document.getElementById("map");
 svg.setAttribute("viewBox",`0 0 ${DATA.w} ${DATA.h}`);
@@ -145,19 +154,19 @@ DATA.f.forEach(f=>{
 function render(){
   const lv=FILTERS[FK].lv;
   paths.forEach(([p,f])=>p.setAttribute("fill",color(resVal(f))));
-  circles.forEach(([ci,c])=>{const n=sum(c.lv,lv); ci.setAttribute("r",rad(n)); ci.setAttribute("class",n>0?"cap":"cap0");});
+  circles.forEach(([ci,c])=>{const n=sum(c.lv,lv); ci.setAttribute("r",n>0?rad(n):0); ci.setAttribute("class","cap"); ci.style.display=n>0?"":"none";});
   [...gC.children].sort((a,b)=>b.getAttribute("r")-a.getAttribute("r")).forEach(c=>gC.append(c));
-  const B=bins();
   document.getElementById("legT").textContent = useRate()
     ? `Resto della provincia: ${FK==="all"?"stellati":"ristoranti 1 stella"} ogni 100.000 residenti`
     : `Resto della provincia: numero di ristoranti ${FILTERS[FK].lab}`;
   document.getElementById("legC").textContent = `Capoluogo (cerchio): numero di ${FK==="all"?"stellati":"ristoranti "+FILTERS[FK].lab}`;
-  document.getElementById("ramp").innerHTML=B.map(b=>`<span style="background:${b.c}"></span>`).join("");
-  document.getElementById("rampl").innerHTML=B.map(b=>`<span>${b.l}</span>`).join("");
+  const S=sc(), a=lo();
+  document.getElementById("ramp").style.background=`linear-gradient(90deg,${STOPS.join(",")})`;
+  document.getElementById("rampl").innerHTML=S.ticks.map((v,i)=>`<span class="${v===a?"s":""}" style="left:${S.max===a?100:(v-a)/(S.max-a)*100}%">${i===S.ticks.length-1&&S.last?S.last:fmt(v)}</span>`).join("");
   const sl=document.getElementById("sizeleg"); sl.innerHTML=""; let x=10;
-  const steps = FK==="all"||FK==="s1" ? [0,1,5,10,20] : [0,1,2];
+  const steps = FK==="all"||FK==="s1" ? [1,5,10,20] : [1,2];
   steps.forEach(n=>{const r=rad(n); x+=r;
-    sl.insertAdjacentHTML("beforeend",`<circle cx="${x}" cy="20" r="${r}" class="${n?'cap':'cap0'}"/><text x="${x}" y="44" font-size="12" text-anchor="middle">${n}</text>`); x+=r+22;});
+    sl.insertAdjacentHTML("beforeend",`<circle cx="${x}" cy="20" r="${r}" class="cap"/><text x="${x}" y="44" font-size="12" text-anchor="middle">${n}</text>`); x+=r+22;});
   document.querySelectorAll("#seg-map .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===FK));
   const n=DATA.f.reduce((a,f)=>a+sum(f.lvl.cap,lv)+sum(f.lvl.res,lv),0);
   document.getElementById("cnt").textContent=`${fmt(n)} ristoranti in mappa`;
