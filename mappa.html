@@ -151,7 +151,7 @@ function tipHTML(f){
     ${row(`Capoluogo${f.caps.length>1?"":" ("+cn+")"}`,f.lvl.cap,f.residenti_capoluogo)}${capRows}
     ${row("Resto provincia",f.lvl.res,f.residenti_resto)}
     <tr style="border-top:1px solid var(--grigio-chiaro)">${row("Totale",tot,f.residenti_capoluogo+f.residenti_resto).slice(4)}
-    </table><div class="r">Residenti: capoluogo ${fmt(f.residenti_capoluogo)}, resto ${fmt(f.residenti_resto)}</div>${listHTML(f)}`;
+    </table>${listHTML(f)}`;
 }
 const paths=[], circles=[];
 DATA.f.forEach(f=>{
