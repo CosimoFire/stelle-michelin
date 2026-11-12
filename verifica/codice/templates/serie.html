@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le stelle Michelin in Italia per area geografica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* Stile dei grafici golden power / sirene: Source Serif 4, azzurro come unico accento, grigi */
+:root{--blu:#169cdc;--blu-scuro:#0b6fa3;--ink:#1a1a1a;--ink2:#444;--muted:#6b6b6b;--grigio:#9b9b9b;--grigio-chiaro:#d9d9d9;--scuro:#3b3b3b;--panel:#f0f0f0;--bordo:#bdbdbd;--city:var(--scuro)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff}
+body{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);font-size:16px;line-height:1.45}
+.wrap{max-width:620px;margin:0 auto;padding:16px 12px 2px}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:22px;margin:30px 0 4px;font-weight:700;text-wrap:balance}
+.dek{margin:0 0 18px;color:var(--ink2)}
+.sub{margin:0 0 8px;color:var(--ink2);font-size:15px}
+.sub b{color:var(--ink)}
+.panel{background:var(--panel);padding:14px 18px 16px;margin:12px 0 14px;text-align:center}
+.panel h3{font-size:15px;margin:0 0 8px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{font-family:inherit;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);font-size:15px;line-height:1.2;text-align:center}
+.chip[aria-pressed="true"]{background:var(--blu);border-color:var(--blu);color:#fff;font-weight:700}
+.chip:focus-visible,.prov:focus,.tbtn:focus-visible{outline:3px solid var(--blu-scuro);outline-offset:2px}
+.cnt{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.chart{border-top:2px solid var(--grigio-chiaro);padding-top:6px;position:relative}
+svg{display:block}
+#map{width:100%;height:auto;max-width:520px;margin:0 auto}
+.prov{stroke:#fff;stroke-width:.6;cursor:pointer}
+.prov:hover,.prov:focus{stroke:var(--ink);stroke-width:1.4}
+.cap{fill:var(--city);stroke:#fff;stroke-width:1.5;pointer-events:none}
+.cap0{fill:#fff;stroke:var(--city);stroke-width:1.2;pointer-events:none}
+.legend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 20px;margin:8px 0 0;font-size:14px;color:var(--ink2)}
+.legend h3{font-size:14px;margin:0 0 6px;font-weight:600;color:var(--ink2)}
+.ramp{display:flex;gap:2px;margin-bottom:3px}
+.ramp span{flex:1;height:12px}
+.ramp-l{display:flex;font-size:12px;color:var(--muted)}
+.ramp-l span{flex:1}
+#sizeleg{width:100%;max-width:260px;height:auto}
+#sizeleg text{font-family:"Source Serif 4",Georgia,serif;fill:var(--muted)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin:6px 0 4px;color:var(--ink2)}
+.leg span{display:inline-flex;align-items:center}
+.leg i{display:inline-block;width:14px;height:3px;margin-right:6px}
+#lc{overflow:hidden}
+#lc svg text{font-size:12px;fill:var(--muted);font-family:"Source Serif 4",Georgia,serif}
+#tip{position:fixed;pointer-events:none;background:var(--scuro);color:#fff;font-size:14px;padding:8px 10px;max-width:330px;min-width:210px;display:none;z-index:5}
+#tip b{font-size:15px}
+#tip table{border-collapse:collapse;margin-top:6px;width:100%}
+#tip td{padding:2px 0 2px 8px;font-variant-numeric:tabular-nums}
+#tip td:first-child{padding-left:0}
+#tip td.n{text-align:right}
+#tip .m{color:#ddd}
+#tip .r{color:#ddd;margin-top:6px;font-size:13px}
+.sw{display:inline-block;width:10px;height:10px;margin-right:5px}
+.tbtn{font-family:inherit;font-size:15px;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);margin-top:14px}
+.tbl{overflow:auto;margin-top:10px;border-top:2px solid var(--grigio-chiaro)}
+table.data{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.data th{text-align:left;color:var(--ink2);font-weight:600;border-bottom:1px solid var(--grigio-chiaro);padding:6px 4px;cursor:pointer;vertical-align:bottom;font-size:13px}
+table.data td{border-bottom:1px solid #e6e6e6;padding:5px 4px}
+table.data td.n,table.data th.n{text-align:right}
+.nota{font-size:14px;color:var(--ink2);border-left:3px solid var(--blu);padding:2px 0 2px 12px;margin:14px 0 0}
+.fonte{border-top:2px solid var(--grigio-chiaro);margin-top:18px;padding-top:8px;font-size:12.5px;color:var(--ink2)}
+.fonte p{margin:0 0 6px}
+@media (max-width:560px){.legend{grid-template-columns:1fr}.chip{flex:0 1 auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Le stelle Michelin in Italia per area geografica</h1>
+  <div class="panel">
+    <h3>Mostra</h3>
+    <div class="chips" role="group" aria-label="Unità del grafico" id="seg-serie">
+      <button class="chip" data-u="abs" aria-pressed="true">Numero di ristoranti</button><button class="chip" data-u="pct" aria-pressed="false">Quota sul totale</button>
+    </div>
+  </div>
+  <div class="leg" id="lc-leg"></div>
+  <div class="chart"><div id="lc"></div></div>
+  <div class="nota" id="lc-note"></div>
+
+  <div class="fonte">
+    <p><b>Fonte:</b> notizie di stampa, Michelin</p>
+  </div>
+</div>
+<div id="tip"></div>
+<script>
+const SERIE = __SERIE__;
+const fmt = (v,d=0)=> v==null||isNaN(v)?"–":v.toLocaleString("it-IT",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = v=> v==null?"–":fmt(v*100,0)+"%";
+const tip=document.getElementById("tip");
+function placeTip(e){
+  const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8), y=Math.min(e.clientY+14,innerHeight-tip.offsetHeight-8);
+  tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px";
+}
+// ---------- grafico a linee ----------
+(function(){
+  // Mezzogiorno in azzurro (la notizia), Nord e Centro in grigi
+  const COL={Nord:"#3b3b3b",Mezzogiorno:"#169cdc",Centro:"#9b9b9b"}, KEYS=["Nord","Mezzogiorno","Centro"];
+  let U="abs";
+  const el=document.getElementById("lc"), N=SERIE.anni.length, A0=SERIE.anni[0], A1=SERIE.anni[N-1];
+  const d=k=>SERIE.abs[k][N-1]-SERIE.abs[k][0], sg=v=>(v>=0?"+":"")+v;
+  function draw(){
+    const W=Math.max(300,el.clientWidth), H=Math.min(320,Math.max(240,W*0.5)), m={t:14,r:16,b:28,l:40};
+    const iw=W-m.l-m.r, ih=H-m.t-m.b, S=SERIE[U];
+    const ymin = U==="abs"? 40 : 10, ymax = U==="abs"? 220 : 65;
+    const x=i=>m.l+i*iw/(N-1), y=v=>m.t+ih-((v-ymin)/(ymax-ymin))*ih;
+    let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Grafico a linee: stellati per macroarea ${A0}-${A1}">`;
+    const ticks = U==="abs"?[50,100,150,200]:[10,20,30,40,50,60];
+    ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e6e6" stroke-width="1"/><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}${U==="pct"?"%":""}</text>`;});
+    SERIE.anni.forEach((a,i)=>{ if(W<520 && (N-1-i)%2) return; s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${a}</text>`;});
+    KEYS.forEach(k=>{const dd=S[k].map((v,i)=>(i?"L":"M")+x(i)+","+y(v)).join("");
+      s+=`<path d="${dd}" fill="none" stroke="${COL[k]}" stroke-width="${k==="Mezzogiorno"?3:2.25}" stroke-linejoin="round" stroke-linecap="round"/>`;
+      s+=`<circle cx="${x(N-1)}" cy="${y(S[k][N-1])}" r="4" fill="${COL[k]}" stroke="#fff" stroke-width="2"/>`;});
+    s+=`<line id="lc-x" x1="0" x2="0" y1="${m.t}" y2="${m.t+ih}" stroke="#444" stroke-width="1" opacity="0"/>`;
+    s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" id="lc-hit"/></svg>`;
+    el.innerHTML=s;
+    const hit=el.querySelector("#lc-hit"), xl=el.querySelector("#lc-x");
+    const mv=e=>{const r=el.querySelector("svg").getBoundingClientRect(); let i=Math.round(((e.clientX-r.left)*W/r.width-m.l)/iw*(N-1)); i=Math.max(0,Math.min(N-1,i));
+      xl.setAttribute("x1",x(i)); xl.setAttribute("x2",x(i)); xl.setAttribute("opacity",".5");
+      tip.innerHTML=`<b>Edizione ${SERIE.anni[i]}</b><table>${KEYS.map(k=>`<tr><td><span class="sw" style="background:${COL[k]};${k==="Nord"?"outline:1px solid #fff":""}"></span>${k}</td><td class="n">${SERIE.abs[k][i]}</td><td class="n m">${fmt(SERIE.pct[k][i],1)}%</td></tr>`).join("")}<tr class="m"><td>Totale Italia</td><td class="n">${SERIE.tot[i]}</td><td></td></tr></table>`;
+      tip.style.display="block"; placeTip(e);};
+    hit.addEventListener("mousemove",mv); hit.addEventListener("touchstart",e=>mv(e.touches[0]),{passive:true});
+    hit.addEventListener("mouseleave",()=>{tip.style.display="none"; xl.setAttribute("opacity","0");});
+    document.getElementById("lc-leg").innerHTML=KEYS.map(k=>`<span><i style="background:${COL[k]}"></i>${k}&nbsp;<b style="color:var(--ink)">${U==="abs"?S[k][N-1]:fmt(S[k][N-1],1)+"%"}</b>&nbsp;nel ${A1}</span>`).join("");
+    // frasi della nota calcolate dai dati (nessun numero scritto a mano)
+    const ab=SERIE.abs, T=SERIE.tot, P=SERIE.pct, dl=k=>ab[k][N-1]-ab[k][N-2], sgn=v=>(v>0?"+":v<0?"−":"")+Math.abs(v);
+    const dT=T[N-1]-T[N-2];
+    document.getElementById("lc-note").textContent = U==="abs"
+      ? `Il Nord resta tra ${Math.min(...ab.Nord)} e ${Math.max(...ab.Nord)} stellati in tutte le edizioni: la crescita dal ${A0} (da ${T[0]} a ${T[N-1]}) va a Centro e Mezzogiorno. Nel ${A1} il totale ${dT<0?"scende":"sale"} di ${Math.abs(dT)} rispetto all'edizione precedente: ${sgn(dl("Nord"))} al Nord, ${sgn(dl("Centro"))} al Centro, ${sgn(dl("Mezzogiorno"))} nel Mezzogiorno.`
+      : `Il Nord passa dal ${fmt(P.Nord[0],1)}% al ${fmt(P.Nord[N-1],1)}% degli stellati. Il Mezzogiorno sale dal ${fmt(P.Mezzogiorno[0],1)}% al ${fmt(P.Mezzogiorno[N-1],1)}%, ma resta sotto il suo peso demografico (${fmt(SERIE.pop.Mezzogiorno,1)}% dei residenti).`;
+  }
+  document.querySelectorAll("#seg-serie .chip").forEach(b=>b.onclick=()=>{U=b.dataset.u; document.querySelectorAll("#seg-serie .chip").forEach(x=>x.setAttribute("aria-pressed",x===b)); draw();});
+  draw(); let rt, lw=el.clientWidth; new ResizeObserver(()=>{if(el.clientWidth===lw) return; lw=el.clientWidth; clearTimeout(rt); rt=setTimeout(draw,120);}).observe(el);
+})();
+
+// altezza automatica per l'iframe (stesso protocollo di golden power e sirene)
+let ultimaH=0;function h(){const v=Math.ceil(document.querySelector('.wrap').getBoundingClientRect().height);if(v!==ultimaH){ultimaH=v;parent.postMessage({gpEmbed:'michelin-serie',height:v},'*');}}
+new ResizeObserver(h).observe(document.querySelector('.wrap'));addEventListener('load',h);addEventListener('click',()=>setTimeout(h,50));setInterval(h,500);
+</script>
+</body>
+</html>

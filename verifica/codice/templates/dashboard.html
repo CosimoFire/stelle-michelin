@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stelle Michelin in Italia: dove sono e come si spostano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* Stile dei grafici golden power / sirene: Source Serif 4, azzurro come unico accento, grigi */
+:root{--blu:#169cdc;--blu-scuro:#0b6fa3;--ink:#1a1a1a;--ink2:#444;--muted:#6b6b6b;--grigio:#9b9b9b;--grigio-chiaro:#d9d9d9;--scuro:#3b3b3b;--panel:#f0f0f0;--bordo:#bdbdbd;--city:var(--scuro)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff}
+body{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);font-size:16px;line-height:1.45}
+.wrap{max-width:620px;margin:0 auto;padding:16px 12px 2px}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:22px;margin:30px 0 4px;font-weight:700;text-wrap:balance}
+.dek{margin:0 0 18px;color:var(--ink2)}
+.sub{margin:0 0 8px;color:var(--ink2);font-size:15px}
+.sub b{color:var(--ink)}
+.panel{background:var(--panel);padding:14px 18px 16px;margin:12px 0 14px;text-align:center}
+.panel h3{font-size:15px;margin:0 0 8px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{font-family:inherit;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);font-size:15px;line-height:1.2;text-align:center}
+.chip[aria-pressed="true"]{background:var(--blu);border-color:var(--blu);color:#fff;font-weight:700}
+.chip:focus-visible,.prov:focus,.tbtn:focus-visible{outline:3px solid var(--blu-scuro);outline-offset:2px}
+.cnt{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.chart{border-top:2px solid var(--grigio-chiaro);padding-top:6px;position:relative}
+svg{display:block}
+#map{width:100%;height:auto;max-width:520px;margin:0 auto}
+.prov{stroke:#fff;stroke-width:.6;cursor:pointer}
+.prov:hover,.prov:focus{stroke:var(--ink);stroke-width:1.4}
+.cap{fill:var(--city);stroke:#fff;stroke-width:1.5;pointer-events:none}
+.cap0{fill:#fff;stroke:var(--city);stroke-width:1.2;pointer-events:none}
+.legend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 20px;margin:8px 0 0;font-size:14px;color:var(--ink2)}
+.legend h3{font-size:14px;margin:0 0 6px;font-weight:600;color:var(--ink2)}
+.ramp{display:flex;gap:2px;margin-bottom:3px}
+.ramp span{flex:1;height:12px}
+.ramp-l{display:flex;font-size:12px;color:var(--muted)}
+.ramp-l span{flex:1}
+#sizeleg{width:100%;max-width:260px;height:auto}
+#sizeleg text{font-family:"Source Serif 4",Georgia,serif;fill:var(--muted)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin:6px 0 4px;color:var(--ink2)}
+.leg span{display:inline-flex;align-items:center}
+.leg i{display:inline-block;width:14px;height:3px;margin-right:6px}
+#lc{overflow:hidden}
+#lc svg text{font-size:12px;fill:var(--muted);font-family:"Source Serif 4",Georgia,serif}
+#tip{position:fixed;pointer-events:none;background:var(--scuro);color:#fff;font-size:14px;padding:8px 10px;max-width:330px;min-width:210px;display:none;z-index:5}
+#tip b{font-size:15px}
+#tip table{border-collapse:collapse;margin-top:6px;width:100%}
+#tip td{padding:2px 0 2px 8px;font-variant-numeric:tabular-nums}
+#tip td:first-child{padding-left:0}
+#tip td.n{text-align:right}
+#tip .m{color:#ddd}
+#tip .r{color:#ddd;margin-top:6px;font-size:13px}
+.sw{display:inline-block;width:10px;height:10px;margin-right:5px}
+.tbtn{font-family:inherit;font-size:15px;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);margin-top:14px}
+.tbl{overflow:auto;margin-top:10px;border-top:2px solid var(--grigio-chiaro)}
+table.data{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.data th{text-align:left;color:var(--ink2);font-weight:600;border-bottom:1px solid var(--grigio-chiaro);padding:6px 4px;cursor:pointer;vertical-align:bottom;font-size:13px}
+table.data td{border-bottom:1px solid #e6e6e6;padding:5px 4px}
+table.data td.n,table.data th.n{text-align:right}
+.nota{font-size:14px;color:var(--ink2);border-left:3px solid var(--blu);padding:2px 0 2px 12px;margin:14px 0 0}
+.fonte{border-top:2px solid var(--grigio-chiaro);margin-top:18px;padding-top:8px;font-size:12.5px;color:var(--ink2)}
+.fonte p{margin:0 0 6px}
+@media (max-width:560px){.legend{grid-template-columns:1fr}.chip{flex:0 1 auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Stelle Michelin in Italia: dove sono e come si spostano</h1>
+  <p class="dek">I ristoranti con almeno una stella nella Guida Michelin Italia: come è cambiato il peso di Nord, Centro e Mezzogiorno dal 2014 al 2026 e dove si trovano oggi, tra capoluoghi e resto della provincia. Dati fino all'edizione 2026, presentata a novembre 2025.</p>
+
+  <h2>In dodici anni le nuove stelle sono andate quasi tutte al Centro-Sud</h2>
+  <p class="sub" id="serie-sub"></p>
+  <div class="panel">
+    <h3>Mostra</h3>
+    <div class="chips" role="group" aria-label="Unità del grafico" id="seg-serie">
+      <button class="chip" data-u="abs" aria-pressed="true">Numero di ristoranti</button><button class="chip" data-u="pct" aria-pressed="false">Quota sul totale</button>
+    </div>
+  </div>
+  <div class="leg" id="lc-leg"></div>
+  <div class="chart"><div id="lc"></div></div>
+  <div class="nota" id="lc-note"></div>
+
+  <h2>Sette capoluoghi su dieci non hanno un ristorante stellato</h2>
+  <p class="sub">Il <b id="k1"></b> degli stellati è fuori dai capoluoghi, dove vive il <span id="k1b"></span> dei residenti. Il <b id="k2"></b> è in comuni sotto i 5.000 abitanti, che ospitano il 16% dei residenti. Gli stellati si concentrano in poche grandi città (Roma e Milano da sole ne hanno 38) e nei piccoli comuni turistici; <b id="k3"></b> capoluoghi non ne hanno nemmeno uno, tra cui <span id="k3b"></span>.</p>
+  <div class="panel">
+    <h3>Filtra per numero di stelle</h3>
+    <div class="chips" role="group" aria-label="Filtra per stelle" id="seg-map">
+      <button class="chip" data-k="all">Tutti</button><button class="chip" data-k="s1">1 stella</button><button class="chip" data-k="s2">2 stelle</button><button class="chip" data-k="s3">3 stelle</button>
+    </div>
+    <span class="cnt" id="cnt"></span>
+  </div>
+  <div class="legend">
+    <div><h3 id="legT"></h3><div class="ramp" id="ramp"></div><div class="ramp-l" id="rampl"></div></div>
+    <div><h3 id="legC"></h3><svg id="sizeleg" viewBox="0 0 260 46"></svg></div>
+  </div>
+  <div class="chart"><svg id="map" role="img" aria-label="Mappa delle province italiane"></svg></div>
+  <p class="sub" style="font-size:13px;color:var(--muted);text-align:center;margin-top:4px">Passa su una provincia per il dettaglio</p>
+  <button class="tbtn" id="tbtn" aria-expanded="false">Mostra la tabella delle province</button>
+  <div id="tbl" hidden></div>
+
+  <div class="fonte">
+    <p><b>Serie 2014–2026:</b> conteggi per regione dagli elenchi annuali di Scatti di Gusto (2014–2017, 2019–2026) e Dissapore (2018); Lombardia 2016 da Blitz Quotidiano. San Marino escluso. Mezzogiorno = Sud e Isole (ripartizioni Istat). Le somme regionali coincidono con i totali ufficiali tranne 2014 e 2019 (−1), 2021 (−1) e 2016 (−2). Quote dei residenti: ANPR, 11 novembre 2026.</p>
+    <p><b>Mappa:</b> elaborazione su dati Guida Michelin (selezione online, estrazione del 3 novembre 2026 via michelin-my-maps, edizione 2026) e ANPR (residenti all'11 novembre 2026). Capoluoghi: comune sede della provincia (per Barletta-Andria-Trani tutti e tre). L'estrazione conta 377 stellati contro i 394 della presentazione 2026, per chiusure durante l'anno o lacune dell'estrazione (manca per esempio Quattro Passi, tristellato).</p>
+  </div>
+</div>
+<div id="tip"></div>
+<script>
+const DATA = __DATA__;
+const SERIE = __SERIE__;
+const NAT = __NAT__;
+const RATE_BINS = [{max:0,c:"#e6e6e6",l:"0"},{max:.5,c:"#bfe3f5",l:"fino a 0,5"},{max:1,c:"#6cc1ec",l:"0,5–1"},{max:2,c:"#169cdc",l:"1–2"},{max:1e9,c:"#0b5f8c",l:"oltre 2"}];
+const COUNT_BINS = [{max:0,c:"#e6e6e6",l:"0"},{max:1,c:"#169cdc",l:"1"},{max:1e9,c:"#0b5f8c",l:"2 o più"}];
+const FILTERS = {all:{lab:"Tutti gli stellati",lv:[0,1,2]},s1:{lab:"1 stella",lv:[0]},s2:{lab:"2 stelle",lv:[1]},s3:{lab:"3 stelle",lv:[2]}};
+let FK="all";
+const fmt = (v,d=0)=> v==null||isNaN(v)?"–":v.toLocaleString("it-IT",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = v=> v==null?"–":fmt(v*100,0)+"%";
+const rad = n=> n>0 ? 2.5+Math.sqrt(n)*2.7 : 2.4;
+const title = s=> s.toLowerCase().replace(/(^|[\s\-'\/])\S/g,m=>m.toUpperCase());
+const sum = (arr,lv)=> lv.reduce((a,i)=>a+arr[i],0);
+const useRate = ()=> FK==="all"||FK==="s1";
+const bins = ()=> useRate()?RATE_BINS:COUNT_BINS;
+const resVal = f=>{const n=sum(f.lvl.res,FILTERS[FK].lv); return useRate()? n/f.residenti_resto*1e5 : n;};
+const color = v=> bins().find(b=>v<=b.max).c;
+const NS="http://www.w3.org/2000/svg";
+const svg=document.getElementById("map");
+svg.setAttribute("viewBox",`0 0 ${DATA.w} ${DATA.h}`);
+const gP=document.createElementNS(NS,"g"), gC=document.createElementNS(NS,"g");
+svg.append(gP,gC);
+const tip=document.getElementById("tip");
+function placeTip(e){
+  const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8), y=Math.min(e.clientY+14,innerHeight-tip.offsetHeight-8);
+  tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px";
+}
+function tipHTML(f){
+  const cn=f.caps.map(c=>c.nome).join(", "), act=FILTERS[FK].lv;
+  const tot=[0,1,2].map(i=>f.lvl.cap[i]+f.lvl.res[i]);
+  const cell=(a,i)=>`<td class="n" style="${act.includes(i)&&FK!=="all"?"font-weight:700":""}">${fmt(a[i])}</td>`;
+  const row=(lab,a,res)=>`<tr><td>${lab}</td>${[0,1,2].map(i=>cell(a,i)).join("")}<td class="n"><b>${fmt(a[0]+a[1]+a[2])}</b></td><td class="n m">${res?fmt((a[0]+a[1]+a[2])/res*1e5,1):"–"}</td></tr>`;
+  const capRows = f.caps.length>1 ? f.caps.map(c=>row("&nbsp;&nbsp;"+c.nome,c.lv,null)).join("") : "";
+  return `<b>${title(f.p)}</b><table>
+    <tr class="m"><td></td><td class="n">1★</td><td class="n">2★</td><td class="n">3★</td><td class="n">tot.</td><td class="n">x100mila</td></tr>
+    ${row(`Capoluogo${f.caps.length>1?"":" ("+cn+")"}`,f.lvl.cap,f.residenti_capoluogo)}${capRows}
+    ${row("Resto provincia",f.lvl.res,f.residenti_resto)}
+    <tr style="border-top:1px solid #777">${row("Totale",tot,f.residenti_capoluogo+f.residenti_resto).slice(4)}
+    </table><div class="r">Residenti: capoluogo ${fmt(f.residenti_capoluogo)}, resto ${fmt(f.residenti_resto)}</div>`;
+}
+const paths=[], circles=[];
+DATA.f.forEach(f=>{
+  const p=document.createElementNS(NS,"path");
+  p.setAttribute("d",f.d); p.setAttribute("class","prov");
+  p.setAttribute("tabindex","0"); p.setAttribute("aria-label",title(f.p));
+  const move=e=>{ if(!e||e.clientX==null){const r=p.getBoundingClientRect();e={clientX:r.right,clientY:r.top};} placeTip(e); };
+  const show=e=>{ tip.innerHTML=tipHTML(f); tip.style.display="block"; move(e); };
+  p.addEventListener("mouseenter",show); p.addEventListener("mousemove",move);
+  p.addEventListener("focus",()=>show()); p.addEventListener("mouseleave",()=>tip.style.display="none"); p.addEventListener("blur",()=>tip.style.display="none");
+  gP.append(p); paths.push([p,f]);
+  f.caps.forEach(c=>{ const ci=document.createElementNS(NS,"circle");
+    ci.setAttribute("cx",c.xy[0]); ci.setAttribute("cy",c.xy[1]); gC.append(ci); circles.push([ci,c]); });
+});
+function render(){
+  const lv=FILTERS[FK].lv;
+  paths.forEach(([p,f])=>p.setAttribute("fill",color(resVal(f))));
+  circles.forEach(([ci,c])=>{const n=sum(c.lv,lv); ci.setAttribute("r",rad(n)); ci.setAttribute("class",n>0?"cap":"cap0");});
+  [...gC.children].sort((a,b)=>b.getAttribute("r")-a.getAttribute("r")).forEach(c=>gC.append(c));
+  const B=bins();
+  document.getElementById("legT").textContent = useRate()
+    ? `Resto della provincia: ${FK==="all"?"stellati":"ristoranti 1 stella"} ogni 100.000 residenti`
+    : `Resto della provincia: numero di ristoranti ${FILTERS[FK].lab}`;
+  document.getElementById("legC").textContent = `Capoluogo (cerchio): numero di ${FK==="all"?"stellati":"ristoranti "+FILTERS[FK].lab}`;
+  document.getElementById("ramp").innerHTML=B.map(b=>`<span style="background:${b.c}"></span>`).join("");
+  document.getElementById("rampl").innerHTML=B.map(b=>`<span>${b.l}</span>`).join("");
+  const sl=document.getElementById("sizeleg"); sl.innerHTML=""; let x=10;
+  const steps = FK==="all"||FK==="s1" ? [0,1,5,10,20] : [0,1,2];
+  steps.forEach(n=>{const r=rad(n); x+=r;
+    sl.insertAdjacentHTML("beforeend",`<circle cx="${x}" cy="20" r="${r}" class="${n?'cap':'cap0'}"/><text x="${x}" y="44" font-size="12" text-anchor="middle">${n}</text>`); x+=r+22;});
+  document.querySelectorAll("#seg-map .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===FK));
+  const n=DATA.f.reduce((a,f)=>a+sum(f.lvl.cap,lv)+sum(f.lvl.res,lv),0);
+  document.getElementById("cnt").textContent=`${fmt(n)} ristoranti in mappa`;
+}
+document.querySelectorAll("#seg-map .chip").forEach(b=>b.onclick=()=>{FK=b.dataset.k; render();});
+render();
+document.getElementById("k1").textContent=pct(NAT.quota_fuori);
+document.getElementById("k1b").textContent=pct(NAT.quota_res_fuori);
+document.getElementById("k2").textContent=pct(NAT.quota_sotto5k);
+const zero=DATA.f.filter(f=>f.stellati_capoluogo===0);
+document.getElementById("k3").textContent=zero.length+" su 107";
+document.getElementById("k3b").textContent=NAT.esempi_zero;
+// tabella
+const cols=[["p","Provincia",0],["stellati_capoluogo","Stellati capoluogo",1],["stellati_resto","Stellati resto",1],["stellati_capoluogo_x100k","Capoluogo x100mila",1],["stellati_resto_x100k","Resto x100mila",1],["quota_stellati_capoluogo","Quota stellati capoluogo",1],["quota_residenti_capoluogo","Quota residenti capoluogo",1]];
+let sortK="stellati_resto_x100k",dir=-1;
+function renderT(){
+  const rows=[...DATA.f].sort((a,b)=>{const va=a[sortK]??-1,vb=b[sortK]??-1;return (va>vb?1:va<vb?-1:0)*dir;});
+  document.getElementById("tbl").innerHTML=`<div class="tbl"><table class="data"><thead><tr>${cols.map(c=>`<th class="${c[2]?'n':''}" data-k="${c[0]}">${c[1]}${sortK===c[0]?(dir>0?" ▲":" ▼"):""}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map(c=>{const v=r[c[0]];return `<td class="${c[2]?'n':''}">${c[0]==="p"?title(v):c[0].startsWith("quota")?pct(v):c[0].endsWith("x100k")?fmt(v,2):fmt(v)}</td>`}).join("")}</tr>`).join("")}</tbody></table></div>`;
+  document.querySelectorAll("table.data th").forEach(th=>th.onclick=()=>{const k=th.dataset.k; dir = sortK===k?-dir:-1; sortK=k; renderT();});
+}
+const tb=document.getElementById("tbtn");
+tb.onclick=()=>{const t=document.getElementById("tbl"); t.hidden=!t.hidden; tb.setAttribute("aria-expanded",!t.hidden); tb.textContent=t.hidden?"Mostra la tabella delle province":"Nascondi la tabella"; if(!t.hidden) renderT();};
+
+// ---------- grafico a linee ----------
+(function(){
+  // Mezzogiorno in azzurro (la notizia), Nord e Centro in grigi
+  const COL={Nord:"#3b3b3b",Mezzogiorno:"#169cdc",Centro:"#9b9b9b"}, KEYS=["Nord","Mezzogiorno","Centro"];
+  let U="abs";
+  const el=document.getElementById("lc"), N=SERIE.anni.length, A0=SERIE.anni[0], A1=SERIE.anni[N-1];
+  const d=k=>SERIE.abs[k][N-1]-SERIE.abs[k][0], sg=v=>(v>=0?"+":"")+v;
+  document.getElementById("serie-sub").innerHTML=`Dal ${A0} al ${A1} gli stellati passano da ${SERIE.tot[0]} a ${SERIE.tot[N-1]}: <b>${sg(d("Centro"))}</b> al Centro, <b>${sg(d("Mezzogiorno"))}</b> nel Mezzogiorno, <b>${sg(d("Nord"))}</b> al Nord.`;
+  function draw(){
+    const W=Math.max(300,el.clientWidth), H=Math.min(320,Math.max(240,W*0.5)), m={t:14,r:16,b:28,l:40};
+    const iw=W-m.l-m.r, ih=H-m.t-m.b, S=SERIE[U];
+    const ymin = U==="abs"? 40 : 10, ymax = U==="abs"? 220 : 65;
+    const x=i=>m.l+i*iw/(N-1), y=v=>m.t+ih-((v-ymin)/(ymax-ymin))*ih;
+    let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Grafico a linee: stellati per macroarea ${A0}-${A1}">`;
+    const ticks = U==="abs"?[50,100,150,200]:[10,20,30,40,50,60];
+    ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e6e6" stroke-width="1"/><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}${U==="pct"?"%":""}</text>`;});
+    SERIE.anni.forEach((a,i)=>{ if(W<520 && (N-1-i)%2) return; s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${a}</text>`;});
+    KEYS.forEach(k=>{const dd=S[k].map((v,i)=>(i?"L":"M")+x(i)+","+y(v)).join("");
+      s+=`<path d="${dd}" fill="none" stroke="${COL[k]}" stroke-width="${k==="Mezzogiorno"?3:2.25}" stroke-linejoin="round" stroke-linecap="round"/>`;
+      s+=`<circle cx="${x(N-1)}" cy="${y(S[k][N-1])}" r="4" fill="${COL[k]}" stroke="#fff" stroke-width="2"/>`;});
+    s+=`<line id="lc-x" x1="0" x2="0" y1="${m.t}" y2="${m.t+ih}" stroke="#444" stroke-width="1" opacity="0"/>`;
+    s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" id="lc-hit"/></svg>`;
+    el.innerHTML=s;
+    const hit=el.querySelector("#lc-hit"), xl=el.querySelector("#lc-x");
+    const mv=e=>{const r=el.querySelector("svg").getBoundingClientRect(); let i=Math.round(((e.clientX-r.left)*W/r.width-m.l)/iw*(N-1)); i=Math.max(0,Math.min(N-1,i));
+      xl.setAttribute("x1",x(i)); xl.setAttribute("x2",x(i)); xl.setAttribute("opacity",".5");
+      tip.innerHTML=`<b>Edizione ${SERIE.anni[i]}</b><table>${KEYS.map(k=>`<tr><td><span class="sw" style="background:${COL[k]};${k==="Nord"?"outline:1px solid #fff":""}"></span>${k}</td><td class="n">${SERIE.abs[k][i]}</td><td class="n m">${fmt(SERIE.pct[k][i],1)}%</td></tr>`).join("")}<tr class="m"><td>Totale Italia</td><td class="n">${SERIE.tot[i]}</td><td></td></tr></table>`;
+      tip.style.display="block"; placeTip(e);};
+    hit.addEventListener("mousemove",mv); hit.addEventListener("touchstart",e=>mv(e.touches[0]),{passive:true});
+    hit.addEventListener("mouseleave",()=>{tip.style.display="none"; xl.setAttribute("opacity","0");});
+    document.getElementById("lc-leg").innerHTML=KEYS.map(k=>`<span><i style="background:${COL[k]}"></i>${k}&nbsp;<b style="color:var(--ink)">${U==="abs"?S[k][N-1]:fmt(S[k][N-1],1)+"%"}</b>&nbsp;nel ${A1}</span>`).join("");
+    document.getElementById("lc-note").textContent = U==="abs"
+      ? "Il Nord resta tra 200 e 210 stellati in tutte le edizioni: la crescita nazionale (da 328 a 394) va a Centro e Mezzogiorno. Dal 2024 il Mezzogiorno cala da 103 a 97."
+      : "Il Nord passa dal 62,5% al 53% degli stellati. Il Mezzogiorno sale dal 19,8% al 24,6%, ma resta sotto il suo peso demografico (33,4% dei residenti).";
+  }
+  document.querySelectorAll("#seg-serie .chip").forEach(b=>b.onclick=()=>{U=b.dataset.u; document.querySelectorAll("#seg-serie .chip").forEach(x=>x.setAttribute("aria-pressed",x===b)); draw();});
+  draw(); let rt, lw=el.clientWidth; new ResizeObserver(()=>{if(el.clientWidth===lw) return; lw=el.clientWidth; clearTimeout(rt); rt=setTimeout(draw,120);}).observe(el);
+})();
+
+// altezza automatica per l'iframe (stesso protocollo di golden power e sirene)
+let ultimaH=0;function h(){const v=Math.ceil(document.querySelector('.wrap').getBoundingClientRect().height);if(v!==ultimaH){ultimaH=v;parent.postMessage({gpEmbed:'michelin',height:v},'*');}}
+new ResizeObserver(h).observe(document.querySelector('.wrap'));addEventListener('load',h);addEventListener('click',()=>setTimeout(h,50));setInterval(h,500);
+</script>
+</body>
+</html>

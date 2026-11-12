@@ -5,7 +5,7 @@
 | `serie.html` | Le stelle Michelin in Italia per area geografica: serie 2014–2027 per Nord, Centro e Mezzogiorno (numero o quota) |
 | `mappa.html` | I ristoranti stellati Michelin nelle province italiane: capoluogo e resto della provincia, filtro per stelle e tabella |
 | `index.html` | Pagina di prova che incorpora i due grafici come farebbe il sito |
-| `stellati_2027.tsv` | I 382 ristoranti stellati della Guida MICHELIN Italia 2027 con stelle, comune, regione e coordinate, letti dal sito ufficiale |
+| `verifica/` | Pacchetto per la verifica: dati (382 stellati 2027, province, serie per regione), codice e metodo in `verifica/VERIFICA.md` |
 | `dati.json` | I dati usati (serie per macroarea e indicatori per provincia; i grafici hanno gli stessi dati già al loro interno) |
 
 Le pagine non usano librerie esterne. L'unica risorsa esterna è il font Source Serif 4 di Google Fonts.

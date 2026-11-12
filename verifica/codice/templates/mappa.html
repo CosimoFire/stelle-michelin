@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I ristoranti stellati Michelin nelle province italiane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* Stile dei grafici golden power / sirene: Source Serif 4, azzurro come unico accento, grigi */
+:root{--blu:#169cdc;--blu-scuro:#0b6fa3;--ink:#1a1a1a;--ink2:#444;--muted:#6b6b6b;--grigio:#9b9b9b;--grigio-chiaro:#d9d9d9;--scuro:#3b3b3b;--panel:#f0f0f0;--bordo:#bdbdbd;--city:var(--scuro)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff}
+body{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);font-size:16px;line-height:1.45}
+.wrap{max-width:620px;margin:0 auto;padding:16px 12px 2px}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:22px;margin:30px 0 4px;font-weight:700;text-wrap:balance}
+.dek{margin:0 0 18px;color:var(--ink2)}
+.sub{margin:0 0 8px;color:var(--ink2);font-size:15px}
+.sub b{color:var(--ink)}
+.panel{background:var(--panel);padding:14px 18px 16px;margin:12px 0 14px;text-align:center}
+.panel h3{font-size:15px;margin:0 0 8px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{font-family:inherit;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);font-size:15px;line-height:1.2;text-align:center}
+.chip[aria-pressed="true"]{background:var(--blu);border-color:var(--blu);color:#fff;font-weight:700}
+.chip:focus-visible,.prov:focus,.tbtn:focus-visible{outline:3px solid var(--blu-scuro);outline-offset:2px}
+.cnt{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.chart{border-top:2px solid var(--grigio-chiaro);padding-top:6px;position:relative}
+svg{display:block}
+#map{width:100%;height:auto;max-width:520px;margin:0 auto}
+.prov{stroke:#fff;stroke-width:.6;cursor:pointer}
+.prov:hover,.prov:focus{stroke:var(--ink);stroke-width:1.4}
+.cap{fill:var(--city);stroke:#fff;stroke-width:1.5;pointer-events:none}
+.cap0{fill:#fff;stroke:var(--city);stroke-width:1.2;pointer-events:none}
+.legend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 20px;margin:8px 0 0;font-size:14px;color:var(--ink2)}
+.legend h3{font-size:14px;margin:0 0 6px;font-weight:600;color:var(--ink2)}
+.cl{display:flex;gap:8px;align-items:flex-start}
+.cl .z{width:22px;flex:none;text-align:center;font-size:12px;color:var(--muted)}
+.cl .z i{display:block;height:12px;background:#e6e6e6;margin-bottom:3px}
+.cl .g{flex:1;min-width:0}
+.cl .bar{height:12px;margin-bottom:3px}
+.cl .t{position:relative;height:16px;font-size:12px;color:var(--muted)}
+.cl .t span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.cl .t span.s{transform:none}
+.cl .t span:last-child{transform:translateX(-100%)}
+#sizeleg{width:100%;max-width:260px;height:auto}
+#sizeleg text{font-family:"Source Serif 4",Georgia,serif;fill:var(--muted)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin:6px 0 4px;color:var(--ink2)}
+.leg span{display:inline-flex;align-items:center}
+.leg i{display:inline-block;width:14px;height:3px;margin-right:6px}
+#lc svg text{font-size:12px;fill:var(--muted);font-family:"Source Serif 4",Georgia,serif}
+#tip{position:fixed;pointer-events:none;background:#fff;color:var(--ink);border:1px solid var(--bordo);box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:14px;padding:8px 10px;max-width:380px;min-width:240px;max-height:calc(100vh - 16px);overflow:hidden;display:none;z-index:5}
+#tip b{font-size:15px}
+#tip table{border-collapse:collapse;margin-top:6px;width:100%}
+#tip td{padding:2px 0 2px 8px;font-variant-numeric:tabular-nums}
+#tip td:first-child{padding-left:0}
+#tip td.n{text-align:right}
+#tip .m{color:var(--muted)}
+#tip .ls{margin-top:8px;border-top:1px solid var(--grigio-chiaro);padding-top:6px;font-size:13px;line-height:1.35}
+#tip .ls .lh{font-weight:700;margin-top:4px}
+#tip .ls .st{color:var(--blu-scuro);font-weight:700;margin-right:4px;letter-spacing:-1px}
+#tip .r{color:var(--ink2);margin-top:6px;font-size:13px}
+.sw{display:inline-block;width:10px;height:10px;margin-right:5px}
+.tbtn{font-family:inherit;font-size:15px;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);margin-top:14px}
+.tbl{overflow:auto;margin-top:10px;border-top:2px solid var(--grigio-chiaro)}
+table.data{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.data th{text-align:left;color:var(--ink2);font-weight:600;border-bottom:1px solid var(--grigio-chiaro);padding:6px 4px;cursor:pointer;vertical-align:bottom;font-size:13px}
+table.data td{border-bottom:1px solid #e6e6e6;padding:5px 4px}
+table.data td.n,table.data th.n{text-align:right}
+.nota{font-size:14px;color:var(--ink2);border-left:3px solid var(--blu);padding:2px 0 2px 12px;margin:14px 0 0}
+.fonte{border-top:2px solid var(--grigio-chiaro);margin-top:18px;padding-top:8px;font-size:12.5px;color:var(--ink2)}
+.fonte p{margin:0 0 6px}
+@media (max-width:560px){.legend{grid-template-columns:1fr}.chip{flex:0 1 auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>I ristoranti stellati Michelin nelle province italiane</h1>
+  <p class="sub">Vai sulla provincia o sulla città per i dati di dettaglio</p>
+  <div class="panel">
+    <h3>Filtra per numero di stelle</h3>
+    <div class="chips" role="group" aria-label="Filtra per stelle" id="seg-map">
+      <button class="chip" data-k="all">Tutti</button><button class="chip" data-k="s1">1 stella</button><button class="chip" data-k="s2">2 stelle</button><button class="chip" data-k="s3">3 stelle</button>
+    </div>
+    <span class="cnt" id="cnt"></span>
+  </div>
+  <div class="legend">
+    <div><h3 id="legT"></h3><div class="cl"><div class="z"><i></i>0</div><div class="g"><div class="bar" id="ramp"></div><div class="t" id="rampl"></div></div></div></div>
+    <div><h3 id="legC"></h3><svg id="sizeleg" viewBox="0 0 260 46"></svg></div>
+  </div>
+  <div class="chart"><svg id="map" role="img" aria-label="Mappa delle province italiane"></svg></div>
+  <button class="tbtn" id="tbtn" aria-expanded="false">Mostra la tabella delle province</button>
+  <div id="tbl" hidden></div>
+
+  <div class="fonte">
+    <p><b>Fonte:</b> Guida MICHELIN Italia 2027</p>
+  </div>
+</div>
+<div id="tip"></div>
+<script>
+const DATA = __DATA__;
+const NAT = __NAT__;
+const NOMI = __NOMI__;
+const fmt = (v,d=0)=> v==null||isNaN(v)?"–":v.toLocaleString("it-IT",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = v=> v==null?"–":fmt(v*100,0)+"%";
+const tip=document.getElementById("tip");
+function placeTip(e){
+  const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8), y=Math.min(e.clientY+14,innerHeight-tip.offsetHeight-8);
+  tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px";
+}
+// scala continua: 0 in grigio, poi dall'azzurro chiaro al blu scuro (valori oltre il massimo della scala al colore più scuro)
+const STOPS = ["#a8d8f1","#169cdc","#073f5e"];
+const SCALE = {rate:{max:3,ticks:[1,2,3],last:"3 e oltre"}, n2:{max:5,ticks:[1,2,3,4,5]}, n3:{max:2,ticks:[1,2]}};
+const FILTERS = {all:{lab:"Tutti gli stellati",lv:[0,1,2]},s1:{lab:"1 stella",lv:[0]},s2:{lab:"2 stelle",lv:[1]},s3:{lab:"3 stelle",lv:[2]}};
+let FK="all";
+const rad = n=> n>0 ? 2.5+Math.sqrt(n)*2.7 : 2.4;
+const title = s=> s.toLowerCase().replace(/(^|[\s\-'\/])\S/g,m=>m.toUpperCase());
+const sum = (arr,lv)=> lv.reduce((a,i)=>a+arr[i],0);
+const useRate = ()=> FK==="all"||FK==="s1";
+const sc = ()=> useRate()?SCALE.rate:(FK==="s2"?SCALE.n2:SCALE.n3);
+const hx = h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lerp = t=>{t=Math.max(0,Math.min(1,t))*(STOPS.length-1); const i=Math.min(STOPS.length-2,Math.floor(t)), f=t-i, a=hx(STOPS[i]), b=hx(STOPS[i+1]); return "rgb("+a.map((v,k)=>Math.round(v+(b[k]-v)*f)).join(",")+")";};
+const lo = ()=> useRate()?0:1;
+const resVal = f=>{const n=sum(f.lvl.res,FILTERS[FK].lv); return useRate()? n/f.residenti_resto*1e5 : n;};
+const color = v=>{ if(!(v>0)) return "#e6e6e6"; const S=sc(), a=lo(); return lerp(S.max===a?1:(v-a)/(S.max-a)); };
+const NS="http://www.w3.org/2000/svg";
+const svg=document.getElementById("map");
+svg.setAttribute("viewBox",`0 0 ${DATA.w} ${DATA.h}`);
+const gP=document.createElementNS(NS,"g"), gC=document.createElementNS(NS,"g");
+svg.append(gP,gC);
+// elenco dei ristoranti per capoluogo e resto della provincia, dalle tre stelle in giù (solo i livelli del filtro attivo)
+function listHTML(f){
+  const n=NOMI[f.p]; if(!n) return "";
+  const lv=[2,1,0].filter(i=>FILTERS[FK].lv.includes(i)), many=f.caps.length>1;
+  const part=(lab,o,withCity)=>{ const rows=lv.map(i=>{ const L=o[String(i+1)]; if(!L.length) return "";
+      return `<div><span class="st">${"★".repeat(i+1)}</span>${L.map(([nm,c])=>withCity?`${nm} (${c})`:nm).join(", ")}</div>`;}).join("");
+    return rows?`<div class="lh">${lab}</div>${rows}`:""; };
+  const cn=f.caps.map(c=>c.nome).join(", ");
+  const h=part(many?"Capoluoghi":`Capoluogo (${cn})`,n.cap,many)+part("Resto della provincia",n.res,true);
+  return h?`<div class="ls">${h}</div>`:"";
+}
+function tipHTML(f){
+  const cn=f.caps.map(c=>c.nome).join(", "), act=FILTERS[FK].lv;
+  const tot=[0,1,2].map(i=>f.lvl.cap[i]+f.lvl.res[i]);
+  const cell=(a,i)=>`<td class="n" style="${act.includes(i)&&FK!=="all"?"font-weight:700":""}">${fmt(a[i])}</td>`;
+  const row=(lab,a,res)=>`<tr><td>${lab}</td>${[0,1,2].map(i=>cell(a,i)).join("")}<td class="n"><b>${fmt(a[0]+a[1]+a[2])}</b></td></tr>`;
+  const capRows = f.caps.length>1 ? f.caps.map(c=>row("&nbsp;&nbsp;"+c.nome,c.lv,null)).join("") : "";
+  return `<b>${title(f.p)}</b><table>
+    <tr class="m"><td></td><td class="n">1★</td><td class="n">2★</td><td class="n">3★</td><td class="n">tot.</td></tr>
+    ${row(`Capoluogo${f.caps.length>1?"":" ("+cn+")"}`,f.lvl.cap,f.residenti_capoluogo)}${capRows}
+    ${row("Resto provincia",f.lvl.res,f.residenti_resto)}
+    <tr style="border-top:1px solid var(--grigio-chiaro)">${row("Totale",tot,f.residenti_capoluogo+f.residenti_resto).slice(4)}
+    </table><div class="r">Residenti: capoluogo ${fmt(f.residenti_capoluogo)}, resto ${fmt(f.residenti_resto)}</div>${listHTML(f)}`;
+}
+const paths=[], circles=[];
+DATA.f.forEach(f=>{
+  const p=document.createElementNS(NS,"path");
+  p.setAttribute("d",f.d); p.setAttribute("class","prov");
+  p.setAttribute("tabindex","0"); p.setAttribute("aria-label",title(f.p));
+  const move=e=>{ if(!e||e.clientX==null){const r=p.getBoundingClientRect();e={clientX:r.right,clientY:r.top};} placeTip(e); };
+  const show=e=>{ tip.innerHTML=tipHTML(f); tip.style.display="block"; move(e); };
+  p.addEventListener("mouseenter",show); p.addEventListener("mousemove",move);
+  p.addEventListener("focus",()=>show()); p.addEventListener("mouseleave",()=>tip.style.display="none"); p.addEventListener("blur",()=>tip.style.display="none");
+  gP.append(p); paths.push([p,f]);
+  f.caps.forEach(c=>{ const ci=document.createElementNS(NS,"circle");
+    ci.setAttribute("cx",c.xy[0]); ci.setAttribute("cy",c.xy[1]); gC.append(ci); circles.push([ci,c]); });
+});
+function render(){
+  const lv=FILTERS[FK].lv;
+  paths.forEach(([p,f])=>p.setAttribute("fill",color(resVal(f))));
+  circles.forEach(([ci,c])=>{const n=sum(c.lv,lv); ci.setAttribute("r",n>0?rad(n):0); ci.setAttribute("class","cap"); ci.style.display=n>0?"":"none";});
+  [...gC.children].sort((a,b)=>b.getAttribute("r")-a.getAttribute("r")).forEach(c=>gC.append(c));
+  document.getElementById("legT").textContent = useRate()
+    ? `Resto della provincia: ${FK==="all"?"stellati":"ristoranti 1 stella"} ogni 100.000 residenti`
+    : `Resto della provincia: numero di ristoranti ${FILTERS[FK].lab}`;
+  document.getElementById("legC").textContent = `Capoluogo (cerchio): numero di ${FK==="all"?"stellati":"ristoranti "+FILTERS[FK].lab}`;
+  const S=sc(), a=lo();
+  document.getElementById("ramp").style.background=`linear-gradient(90deg,${STOPS.join(",")})`;
+  document.getElementById("rampl").innerHTML=S.ticks.map((v,i)=>`<span class="${v===a?"s":""}" style="left:${S.max===a?100:(v-a)/(S.max-a)*100}%">${i===S.ticks.length-1&&S.last?S.last:fmt(v)}</span>`).join("");
+  const sl=document.getElementById("sizeleg"); sl.innerHTML=""; let x=10;
+  const steps = FK==="all"||FK==="s1" ? [1,5,10,20] : [1,2];
+  steps.forEach(n=>{const r=rad(n); x+=r;
+    sl.insertAdjacentHTML("beforeend",`<circle cx="${x}" cy="20" r="${r}" class="cap"/><text x="${x}" y="44" font-size="12" text-anchor="middle">${n}</text>`); x+=r+22;});
+  document.querySelectorAll("#seg-map .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===FK));
+  const n=DATA.f.reduce((a,f)=>a+sum(f.lvl.cap,lv)+sum(f.lvl.res,lv),0);
+  document.getElementById("cnt").textContent=`${fmt(n)} ristoranti in mappa`;
+}
+document.querySelectorAll("#seg-map .chip").forEach(b=>b.onclick=()=>{FK=b.dataset.k; render();});
+render();
+// tabella
+const cols=[["p","Provincia",0],["stellati_capoluogo","Stellati capoluogo",1],["stellati_resto","Stellati resto",1],["stellati_capoluogo_x100k","Capoluogo x100mila",1],["stellati_resto_x100k","Resto x100mila",1],["quota_stellati_capoluogo","Quota stellati capoluogo",1],["quota_residenti_capoluogo","Quota residenti capoluogo",1]];
+let sortK="stellati_resto_x100k",dir=-1;
+function renderT(){
+  const rows=[...DATA.f].sort((a,b)=>{const va=a[sortK]??-1,vb=b[sortK]??-1;return (va>vb?1:va<vb?-1:0)*dir;});
+  document.getElementById("tbl").innerHTML=`<div class="tbl"><table class="data"><thead><tr>${cols.map(c=>`<th class="${c[2]?'n':''}" data-k="${c[0]}">${c[1]}${sortK===c[0]?(dir>0?" ▲":" ▼"):""}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map(c=>{const v=r[c[0]];return `<td class="${c[2]?'n':''}">${c[0]==="p"?title(v):c[0].startsWith("quota")?pct(v):c[0].endsWith("x100k")?fmt(v,2):fmt(v)}</td>`}).join("")}</tr>`).join("")}</tbody></table></div>`;
+  document.querySelectorAll("table.data th").forEach(th=>th.onclick=()=>{const k=th.dataset.k; dir = sortK===k?-dir:-1; sortK=k; renderT();});
+}
+const tb=document.getElementById("tbtn");
+tb.onclick=()=>{const t=document.getElementById("tbl"); t.hidden=!t.hidden; tb.setAttribute("aria-expanded",!t.hidden); tb.textContent=t.hidden?"Mostra la tabella delle province":"Nascondi la tabella"; if(!t.hidden) renderT();};
+
+// altezza automatica per l'iframe (stesso protocollo di golden power e sirene)
+let ultimaH=0;function h(){const v=Math.ceil(document.querySelector('.wrap').getBoundingClientRect().height);if(v!==ultimaH){ultimaH=v;parent.postMessage({gpEmbed:'michelin-mappa',height:v},'*');}}
+new ResizeObserver(h).observe(document.querySelector('.wrap'));addEventListener('load',h);addEventListener('click',()=>setTimeout(h,50));setInterval(h,500);
+</script>
+</body>
+</html>
