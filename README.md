@@ -1,35 +1,43 @@
-# Stelle Michelin in Italia: grafico da incorporare
+# Stelle Michelin in Italia: grafici da incorporare
 
 | File | Che cosa contiene |
 |---|---|
-| `dashboard.html` | La dashboard: serie 2014–2026 per Nord, Centro e Mezzogiorno e mappa delle province (capoluogo e resto della provincia), con filtro per stelle e tabella |
-| `index.html` | Pagina di prova che incorpora la dashboard come farebbe il sito |
-| `dati.json` | I dati usati (serie per macroarea e indicatori per provincia; la dashboard ha gli stessi dati già al suo interno) |
+| `serie.html` | Le stelle Michelin in Italia per area geografica: serie 2014–2026 per Nord, Centro e Mezzogiorno (numero o quota) |
+| `mappa.html` | I ristoranti stellati Michelin nelle province italiane: capoluogo e resto della provincia, filtro per stelle e tabella |
+| `index.html` | Pagina di prova che incorpora i due grafici come farebbe il sito |
+| `dati.json` | I dati usati (serie per macroarea e indicatori per provincia; i grafici hanno gli stessi dati già al loro interno) |
 
-La pagina non usa librerie esterne. L'unica risorsa esterna è il font Source Serif 4 di Google Fonts.
+Le pagine non usano librerie esterne. L'unica risorsa esterna è il font Source Serif 4 di Google Fonts.
 
 ## 1. Pubblicazione
 
 La pagina è pubblicata con GitHub Pages (branch **main**, cartella **/ (root)**):
 
-- `https://cosimofire.github.io/stelle-michelin/dashboard.html`
+- `https://cosimofire.github.io/stelle-michelin/serie.html`
+- `https://cosimofire.github.io/stelle-michelin/mappa.html`
 - `https://cosimofire.github.io/stelle-michelin/` (pagina di prova)
 
-Per aggiornare il grafico basta ricaricare `dashboard.html` su GitHub: la versione online si aggiorna in circa un minuto, anche negli articoli dove è già incorporato. Il file si rigenera dal progetto `michelin-dashboard` con `make build` (template `templates/dashboard.html`).
+Per aggiornare un grafico basta ricaricare il file su GitHub: la versione online si aggiorna in circa un minuto, anche negli articoli dove è già incorporato. I file si rigenerano dal progetto `michelin-dashboard` con `make build`: `output/serie_macroaree.html` diventa `serie.html`, `output/mappa_province.html` diventa `mappa.html`.
 
 ## 2. Incorporare nell'articolo
 
-Nel CMS inserisci un blocco HTML con questo codice:
+Nel CMS inserisci un blocco HTML per ciascun grafico:
 
 ```html
-<iframe src="https://cosimofire.github.io/stelle-michelin/dashboard.html"
-        title="Stelle Michelin in Italia: dove sono e come si spostano"
-        style="width:100%;border:0;height:2100px" scrolling="no"></iframe>
+<iframe src="https://cosimofire.github.io/stelle-michelin/serie.html"
+        title="Le stelle Michelin in Italia per area geografica"
+        style="width:100%;border:0;height:850px" scrolling="no"></iframe>
+```
+
+```html
+<iframe src="https://cosimofire.github.io/stelle-michelin/mappa.html"
+        title="I ristoranti stellati Michelin nelle province italiane"
+        style="width:100%;border:0;height:1350px" scrolling="no"></iframe>
 ```
 
 ### Altezza automatica
 
-La dashboard comunica la propria altezza alla pagina che la ospita. Per usarla aggiungi **una sola volta** nella pagina questo script (è lo stesso di golden power e sirene: se è già nel template del sito non serve ripeterlo):
+I grafici comunicano la propria altezza alla pagina che la ospita. Per usarla aggiungi **una sola volta** nella pagina questo script (è lo stesso di golden power e sirene: se è già nel template del sito non serve ripeterlo):
 
 ```html
 <script>
