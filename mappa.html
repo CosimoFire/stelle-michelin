@@ -45,14 +45,14 @@ svg{display:block}
 .leg span{display:inline-flex;align-items:center}
 .leg i{display:inline-block;width:14px;height:3px;margin-right:6px}
 #lc svg text{font-size:12px;fill:var(--muted);font-family:"Source Serif 4",Georgia,serif}
-#tip{position:fixed;pointer-events:none;background:var(--scuro);color:#fff;font-size:14px;padding:8px 10px;max-width:330px;min-width:210px;display:none;z-index:5}
+#tip{position:fixed;pointer-events:none;background:#fff;color:var(--ink);border:1px solid var(--bordo);box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:14px;padding:8px 10px;max-width:330px;min-width:210px;display:none;z-index:5}
 #tip b{font-size:15px}
 #tip table{border-collapse:collapse;margin-top:6px;width:100%}
 #tip td{padding:2px 0 2px 8px;font-variant-numeric:tabular-nums}
 #tip td:first-child{padding-left:0}
 #tip td.n{text-align:right}
-#tip .m{color:#ddd}
-#tip .r{color:#ddd;margin-top:6px;font-size:13px}
+#tip .m{color:var(--muted)}
+#tip .r{color:var(--ink2);margin-top:6px;font-size:13px}
 .sw{display:inline-block;width:10px;height:10px;margin-right:5px}
 .tbtn{font-family:inherit;font-size:15px;background:#fff;border:2px solid var(--bordo);padding:6px 12px;cursor:pointer;color:var(--ink);margin-top:14px}
 .tbl{overflow:auto;margin-top:10px;border-top:2px solid var(--grigio-chiaro)}
@@ -69,6 +69,7 @@ table.data td.n,table.data th.n{text-align:right}
 <body>
 <div class="wrap">
   <h1>I ristoranti stellati Michelin nelle province italiane</h1>
+  <p class="sub">Vai sulla provincia o sulla città per i dati di dettaglio</p>
   <div class="panel">
     <h3>Filtra per numero di stelle</h3>
     <div class="chips" role="group" aria-label="Filtra per stelle" id="seg-map">
@@ -81,7 +82,6 @@ table.data td.n,table.data th.n{text-align:right}
     <div><h3 id="legC"></h3><svg id="sizeleg" viewBox="0 0 260 46"></svg></div>
   </div>
   <div class="chart"><svg id="map" role="img" aria-label="Mappa delle province italiane"></svg></div>
-  <p class="sub" style="font-size:13px;color:var(--muted);text-align:center;margin-top:4px">Passa su una provincia per il dettaglio</p>
   <button class="tbtn" id="tbtn" aria-expanded="false">Mostra la tabella delle province</button>
   <div id="tbl" hidden></div>
 
@@ -120,13 +120,13 @@ function tipHTML(f){
   const cn=f.caps.map(c=>c.nome).join(", "), act=FILTERS[FK].lv;
   const tot=[0,1,2].map(i=>f.lvl.cap[i]+f.lvl.res[i]);
   const cell=(a,i)=>`<td class="n" style="${act.includes(i)&&FK!=="all"?"font-weight:700":""}">${fmt(a[i])}</td>`;
-  const row=(lab,a,res)=>`<tr><td>${lab}</td>${[0,1,2].map(i=>cell(a,i)).join("")}<td class="n"><b>${fmt(a[0]+a[1]+a[2])}</b></td><td class="n m">${res?fmt((a[0]+a[1]+a[2])/res*1e5,1):"–"}</td></tr>`;
+  const row=(lab,a,res)=>`<tr><td>${lab}</td>${[0,1,2].map(i=>cell(a,i)).join("")}<td class="n"><b>${fmt(a[0]+a[1]+a[2])}</b></td></tr>`;
   const capRows = f.caps.length>1 ? f.caps.map(c=>row("&nbsp;&nbsp;"+c.nome,c.lv,null)).join("") : "";
   return `<b>${title(f.p)}</b><table>
-    <tr class="m"><td></td><td class="n">1★</td><td class="n">2★</td><td class="n">3★</td><td class="n">tot.</td><td class="n">x100mila</td></tr>
+    <tr class="m"><td></td><td class="n">1★</td><td class="n">2★</td><td class="n">3★</td><td class="n">tot.</td></tr>
     ${row(`Capoluogo${f.caps.length>1?"":" ("+cn+")"}`,f.lvl.cap,f.residenti_capoluogo)}${capRows}
     ${row("Resto provincia",f.lvl.res,f.residenti_resto)}
-    <tr style="border-top:1px solid #777">${row("Totale",tot,f.residenti_capoluogo+f.residenti_resto).slice(4)}
+    <tr style="border-top:1px solid var(--grigio-chiaro)">${row("Totale",tot,f.residenti_capoluogo+f.residenti_resto).slice(4)}
     </table><div class="r">Residenti: capoluogo ${fmt(f.residenti_capoluogo)}, resto ${fmt(f.residenti_resto)}</div>`;
 }
 const paths=[], circles=[];
