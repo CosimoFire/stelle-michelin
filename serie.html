@@ -44,6 +44,7 @@ svg{display:block}
 .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin:6px 0 4px;color:var(--ink2)}
 .leg span{display:inline-flex;align-items:center}
 .leg i{display:inline-block;width:14px;height:3px;margin-right:6px}
+#lc{overflow:hidden}
 #lc svg text{font-size:12px;fill:var(--muted);font-family:"Source Serif 4",Georgia,serif}
 #tip{position:fixed;pointer-events:none;background:var(--scuro);color:#fff;font-size:14px;padding:8px 10px;max-width:330px;min-width:210px;display:none;z-index:5}
 #tip b{font-size:15px}
@@ -69,8 +70,6 @@ table.data td.n,table.data th.n{text-align:right}
 <body>
 <div class="wrap">
   <h1>Le stelle Michelin in Italia per area geografica</h1>
-  <p class="dek">Ristoranti con almeno una stella nella Guida Michelin Italia al Nord, al Centro e nel Mezzogiorno, edizioni dal 2014 al 2026.</p>
-  <p class="sub" id="serie-sub"></p>
   <div class="panel">
     <h3>Mostra</h3>
     <div class="chips" role="group" aria-label="Unità del grafico" id="seg-serie">
@@ -102,13 +101,12 @@ function placeTip(e){
   let U="abs";
   const el=document.getElementById("lc"), N=SERIE.anni.length, A0=SERIE.anni[0], A1=SERIE.anni[N-1];
   const d=k=>SERIE.abs[k][N-1]-SERIE.abs[k][0], sg=v=>(v>=0?"+":"")+v;
-  document.getElementById("serie-sub").innerHTML=`Dal ${A0} al ${A1} gli stellati passano da ${SERIE.tot[0]} a ${SERIE.tot[N-1]}: <b>${sg(d("Centro"))}</b> al Centro, <b>${sg(d("Mezzogiorno"))}</b> nel Mezzogiorno, <b>${sg(d("Nord"))}</b> al Nord.`;
   function draw(){
     const W=Math.max(300,el.clientWidth), H=Math.min(320,Math.max(240,W*0.5)), m={t:14,r:16,b:28,l:40};
     const iw=W-m.l-m.r, ih=H-m.t-m.b, S=SERIE[U];
     const ymin = U==="abs"? 40 : 10, ymax = U==="abs"? 220 : 65;
     const x=i=>m.l+i*iw/(N-1), y=v=>m.t+ih-((v-ymin)/(ymax-ymin))*ih;
-    let s=`<svg width="${W}" height="${H}" role="img" aria-label="Grafico a linee: stellati per macroarea ${A0}-${A1}">`;
+    let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Grafico a linee: stellati per macroarea ${A0}-${A1}">`;
     const ticks = U==="abs"?[50,100,150,200]:[10,20,30,40,50,60];
     ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e6e6" stroke-width="1"/><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}${U==="pct"?"%":""}</text>`;});
     SERIE.anni.forEach((a,i)=>{ if(W<520 && i%2) return; s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${a}</text>`;});
@@ -119,7 +117,7 @@ function placeTip(e){
     s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" id="lc-hit"/></svg>`;
     el.innerHTML=s;
     const hit=el.querySelector("#lc-hit"), xl=el.querySelector("#lc-x");
-    const mv=e=>{const r=el.querySelector("svg").getBoundingClientRect(); let i=Math.round((e.clientX-r.left-m.l)/iw*(N-1)); i=Math.max(0,Math.min(N-1,i));
+    const mv=e=>{const r=el.querySelector("svg").getBoundingClientRect(); let i=Math.round(((e.clientX-r.left)*W/r.width-m.l)/iw*(N-1)); i=Math.max(0,Math.min(N-1,i));
       xl.setAttribute("x1",x(i)); xl.setAttribute("x2",x(i)); xl.setAttribute("opacity",".5");
       tip.innerHTML=`<b>Edizione ${SERIE.anni[i]}</b><table>${KEYS.map(k=>`<tr><td><span class="sw" style="background:${COL[k]};${k==="Nord"?"outline:1px solid #fff":""}"></span>${k}</td><td class="n">${SERIE.abs[k][i]}</td><td class="n m">${fmt(SERIE.pct[k][i],1)}%</td></tr>`).join("")}<tr class="m"><td>Totale Italia</td><td class="n">${SERIE.tot[i]}</td><td></td></tr></table>`;
       tip.style.display="block"; placeTip(e);};
@@ -131,7 +129,7 @@ function placeTip(e){
       : "Il Nord passa dal 62,5% al 53% degli stellati. Il Mezzogiorno sale dal 19,8% al 24,6%, ma resta sotto il suo peso demografico (33,4% dei residenti).";
   }
   document.querySelectorAll("#seg-serie .chip").forEach(b=>b.onclick=()=>{U=b.dataset.u; document.querySelectorAll("#seg-serie .chip").forEach(x=>x.setAttribute("aria-pressed",x===b)); draw();});
-  draw(); let rt; addEventListener("resize",()=>{clearTimeout(rt); rt=setTimeout(draw,120);});
+  draw(); let rt, lw=el.clientWidth; new ResizeObserver(()=>{if(el.clientWidth===lw) return; lw=el.clientWidth; clearTimeout(rt); rt=setTimeout(draw,120);}).observe(el);
 })();
 
 // altezza automatica per l'iframe (stesso protocollo di golden power e sirene)

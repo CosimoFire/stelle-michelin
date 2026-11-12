@@ -69,8 +69,6 @@ table.data td.n,table.data th.n{text-align:right}
 <body>
 <div class="wrap">
   <h1>I ristoranti stellati Michelin nelle province italiane</h1>
-  <p class="dek">Ristoranti con almeno una stella nella Guida Michelin Italia 2026, nel comune capoluogo e nel resto di ogni provincia.</p>
-  <p class="sub">Il <b id="k1"></b> degli stellati è fuori dai capoluoghi, dove vive il <span id="k1b"></span> dei residenti. Il <b id="k2"></b> è in comuni sotto i 5.000 abitanti, che ospitano il 16% dei residenti. Gli stellati si concentrano in poche grandi città (Roma e Milano da sole ne hanno 38) e nei piccoli comuni turistici; <b id="k3"></b> capoluoghi non ne hanno nemmeno uno, tra cui <span id="k3b"></span>.</p>
   <div class="panel">
     <h3>Filtra per numero di stelle</h3>
     <div class="chips" role="group" aria-label="Filtra per stelle" id="seg-map">
@@ -166,12 +164,6 @@ function render(){
 }
 document.querySelectorAll("#seg-map .chip").forEach(b=>b.onclick=()=>{FK=b.dataset.k; render();});
 render();
-document.getElementById("k1").textContent=pct(NAT.quota_fuori);
-document.getElementById("k1b").textContent=pct(NAT.quota_res_fuori);
-document.getElementById("k2").textContent=pct(NAT.quota_sotto5k);
-const zero=DATA.f.filter(f=>f.stellati_capoluogo===0);
-document.getElementById("k3").textContent=zero.length+" su 107";
-document.getElementById("k3b").textContent=NAT.esempi_zero;
 // tabella
 const cols=[["p","Provincia",0],["stellati_capoluogo","Stellati capoluogo",1],["stellati_resto","Stellati resto",1],["stellati_capoluogo_x100k","Capoluogo x100mila",1],["stellati_resto_x100k","Resto x100mila",1],["quota_stellati_capoluogo","Quota stellati capoluogo",1],["quota_residenti_capoluogo","Quota residenti capoluogo",1]];
 let sortK="stellati_resto_x100k",dir=-1;
