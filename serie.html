@@ -86,7 +86,7 @@ table.data td.n,table.data th.n{text-align:right}
 </div>
 <div id="tip"></div>
 <script>
-const SERIE = {"anni": [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026], "abs": {"Nord": [205, 205, 206, 200, 207, 209, 210, 207, 205, 205, 206, 206, 209], "Centro": [58, 61, 58, 68, 72, 72, 76, 78, 78, 81, 86, 86, 88], "Mezzogiorno": [65, 65, 67, 74, 76, 85, 87, 84, 94, 99, 103, 101, 97]}, "pct": {"Nord": [62.5, 61.9, 62.2, 58.5, 58.3, 57.1, 56.3, 56.1, 54.4, 53.2, 52.2, 52.4, 53.0], "Centro": [17.7, 18.4, 17.5, 19.9, 20.3, 19.7, 20.4, 21.1, 20.7, 21.0, 21.8, 21.9, 22.3], "Mezzogiorno": [19.8, 19.6, 20.2, 21.6, 21.4, 23.2, 23.3, 22.8, 24.9, 25.7, 26.1, 25.7, 24.6]}, "tot": [328, 331, 331, 342, 355, 366, 373, 369, 377, 385, 395, 393, 394], "pop": {"Nord": 46.7, "Centro": 19.9, "Mezzogiorno": 33.4}};
+const SERIE = {"anni": [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027], "abs": {"Nord": [205, 205, 206, 200, 207, 209, 210, 207, 205, 205, 206, 206, 209, 198], "Centro": [58, 61, 58, 68, 72, 72, 76, 78, 78, 81, 86, 86, 88, 85], "Mezzogiorno": [65, 65, 67, 74, 76, 85, 87, 84, 94, 99, 103, 101, 97, 99]}, "pct": {"Nord": [62.5, 61.9, 62.2, 58.5, 58.3, 57.1, 56.3, 56.1, 54.4, 53.2, 52.2, 52.4, 53.0, 51.8], "Centro": [17.7, 18.4, 17.5, 19.9, 20.3, 19.7, 20.4, 21.1, 20.7, 21.0, 21.8, 21.9, 22.3, 22.3], "Mezzogiorno": [19.8, 19.6, 20.2, 21.6, 21.4, 23.2, 23.3, 22.8, 24.9, 25.7, 26.1, 25.7, 24.6, 25.9]}, "tot": [328, 331, 331, 342, 355, 366, 373, 369, 377, 385, 395, 393, 394, 382], "pop": {"Nord": 46.7, "Centro": 19.9, "Mezzogiorno": 33.4}};
 const fmt = (v,d=0)=> v==null||isNaN(v)?"–":v.toLocaleString("it-IT",{minimumFractionDigits:d,maximumFractionDigits:d});
 const pct = v=> v==null?"–":fmt(v*100,0)+"%";
 const tip=document.getElementById("tip");
@@ -109,7 +109,7 @@ function placeTip(e){
     let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Grafico a linee: stellati per macroarea ${A0}-${A1}">`;
     const ticks = U==="abs"?[50,100,150,200]:[10,20,30,40,50,60];
     ticks.forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e6e6" stroke-width="1"/><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v}${U==="pct"?"%":""}</text>`;});
-    SERIE.anni.forEach((a,i)=>{ if(W<520 && i%2) return; s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${a}</text>`;});
+    SERIE.anni.forEach((a,i)=>{ if(W<520 && (N-1-i)%2) return; s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${a}</text>`;});
     KEYS.forEach(k=>{const dd=S[k].map((v,i)=>(i?"L":"M")+x(i)+","+y(v)).join("");
       s+=`<path d="${dd}" fill="none" stroke="${COL[k]}" stroke-width="${k==="Mezzogiorno"?3:2.25}" stroke-linejoin="round" stroke-linecap="round"/>`;
       s+=`<circle cx="${x(N-1)}" cy="${y(S[k][N-1])}" r="4" fill="${COL[k]}" stroke="#fff" stroke-width="2"/>`;});
@@ -124,9 +124,12 @@ function placeTip(e){
     hit.addEventListener("mousemove",mv); hit.addEventListener("touchstart",e=>mv(e.touches[0]),{passive:true});
     hit.addEventListener("mouseleave",()=>{tip.style.display="none"; xl.setAttribute("opacity","0");});
     document.getElementById("lc-leg").innerHTML=KEYS.map(k=>`<span><i style="background:${COL[k]}"></i>${k}&nbsp;<b style="color:var(--ink)">${U==="abs"?S[k][N-1]:fmt(S[k][N-1],1)+"%"}</b>&nbsp;nel ${A1}</span>`).join("");
+    // frasi della nota calcolate dai dati (nessun numero scritto a mano)
+    const ab=SERIE.abs, T=SERIE.tot, P=SERIE.pct, dl=k=>ab[k][N-1]-ab[k][N-2], sgn=v=>(v>0?"+":v<0?"−":"")+Math.abs(v);
+    const dT=T[N-1]-T[N-2];
     document.getElementById("lc-note").textContent = U==="abs"
-      ? "Il Nord resta tra 200 e 210 stellati in tutte le edizioni: la crescita nazionale (da 328 a 394) va a Centro e Mezzogiorno. Dal 2024 il Mezzogiorno cala da 103 a 97."
-      : "Il Nord passa dal 62,5% al 53% degli stellati. Il Mezzogiorno sale dal 19,8% al 24,6%, ma resta sotto il suo peso demografico (33,4% dei residenti).";
+      ? `Il Nord resta tra ${Math.min(...ab.Nord)} e ${Math.max(...ab.Nord)} stellati in tutte le edizioni: la crescita dal ${A0} (da ${T[0]} a ${T[N-1]}) va a Centro e Mezzogiorno. Nel ${A1} il totale ${dT<0?"scende":"sale"} di ${Math.abs(dT)} rispetto all'edizione precedente: ${sgn(dl("Nord"))} al Nord, ${sgn(dl("Centro"))} al Centro, ${sgn(dl("Mezzogiorno"))} nel Mezzogiorno.`
+      : `Il Nord passa dal ${fmt(P.Nord[0],1)}% al ${fmt(P.Nord[N-1],1)}% degli stellati. Il Mezzogiorno sale dal ${fmt(P.Mezzogiorno[0],1)}% al ${fmt(P.Mezzogiorno[N-1],1)}%, ma resta sotto il suo peso demografico (${fmt(SERIE.pop.Mezzogiorno,1)}% dei residenti).`;
   }
   document.querySelectorAll("#seg-serie .chip").forEach(b=>b.onclick=()=>{U=b.dataset.u; document.querySelectorAll("#seg-serie .chip").forEach(x=>x.setAttribute("aria-pressed",x===b)); draw();});
   draw(); let rt, lw=el.clientWidth; new ResizeObserver(()=>{if(el.clientWidth===lw) return; lw=el.clientWidth; clearTimeout(rt); rt=setTimeout(draw,120);}).observe(el);
